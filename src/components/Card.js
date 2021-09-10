@@ -4,6 +4,7 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 function Card({ id, 
   link, 
   name, 
+  frameSong,
   likes, 
   ownerId, 
   onCardClick, 
@@ -33,6 +34,7 @@ function Card({ id,
       link: link,
       name: name,
       id: id,
+      frameSong: frameSong,
     });
   }
 

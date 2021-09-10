@@ -13,7 +13,6 @@ function Main({ onEditAvatar,
   onConfirmDelete
 }) {
   const userInfo = React.useContext(CurrentUserContext);
-  console.log(cards);
   return (
     (<main className="content section">
       <section className="profile">
@@ -32,6 +31,7 @@ function Main({ onEditAvatar,
           <Card key={card._id}
             id={card._id}
             name={card.title}
+            frameSong={card.frameSong}
             link={card.image}
             likes={card.likes}
             ownerId={card.owner}

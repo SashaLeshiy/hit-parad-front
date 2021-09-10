@@ -104,7 +104,6 @@ function App() {
     tokenCheck();
   }, [])
 
-
   function handleUpdateUser({ name, about }) {
     api.setUser(name, about)
       .then((res) => {
