@@ -1,0 +1,8 @@
+@media screen and (max-width: 500px) {
+    .header__mail {
+        opacity: 0;
+        position: absolute;
+        top: -100px;
+        overflow: hidden;
+    }
+}

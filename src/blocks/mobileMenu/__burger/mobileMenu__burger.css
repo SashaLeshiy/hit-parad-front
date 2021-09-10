@@ -1,0 +1,30 @@
+.mobileMenu__burger {
+    display: none;
+}
+
+@media screen and (max-width: 500px) {
+    .mobileMenu__burger {
+        display: flex;
+        align-items: center;
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+    }
+    .mobileMenu__burger>span, .mobileMenu__burger>span::before, .mobileMenu__burger>span::after {
+        display: block;
+        position: absolute;
+        width: 24px;
+        height: 2px;
+        background-color: #ffffff;
+        transition-duration: .25s;
+    }
+    .mobileMenu__burger>span::before {
+        content: '';
+        top: -8px;
+    }
+    .mobileMenu__burger>span::after {
+        content: '';
+        top: 8px;
+    }
+    
+}

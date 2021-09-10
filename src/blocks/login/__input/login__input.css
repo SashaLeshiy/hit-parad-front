@@ -1,0 +1,30 @@
+.login__input {
+    width: 100%;
+    padding: 5px 0 5px 0;
+    border-bottom: 2px solid #cccccc;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    box-sizing: border-box;
+    align-self: center;
+    color: #ffffff;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    margin-bottom: 30px;
+    background-color: #000000;
+  }
+  
+  .login__input:last-of-type {
+    margin-bottom: 216px;
+  }
+  
+  input:invalid:not(:placeholder-shown) {
+    border-bottom: 1px solid rgb(255,0,0);
+  }
+  
+  @media screen and (max-width: 320px) {
+    .login__input:last-of-type {
+      margin-bottom: 45px;
+    }
+  }

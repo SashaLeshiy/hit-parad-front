@@ -1,0 +1,11 @@
+.mobileMenu__button {
+    background-color: inherit;
+    color: #ffffff;
+    border: 0;
+    padding-top: 18px;
+    transition: opacity 0.7s linear;
+}
+
+.mobileMenu__button:hover {
+    opacity: 0.5;
+}
