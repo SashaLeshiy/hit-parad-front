@@ -12,18 +12,18 @@ function Main({ onEditAvatar,
   onCardDelete,
   onConfirmDelete
 }) {
-  const userInfo = React.useContext(CurrentUserContext);
+  // const userInfo = React.useContext(CurrentUserContext);
   return (
     (<main className="content section">
       <section className="profile">
-        <div className="profile__image" style={{ backgroundImage: `url(${userInfo.avatar})` }} >
+        {/* <div className="profile__image" style={{ backgroundImage: `url(${userInfo.avatar})` }} >
           <div onClick={onEditAvatar} className="profile__imageEdit"></div>
         </div>
         <div className="profile__info">
           <h1 className="profile__heading">{userInfo.name}</h1>
           <button type="button" onClick={onEditProfile} className="profile__button-edit"></button>
           <p className="profile__subheading">{userInfo.about}</p>
-        </div>
+        </div> */}
         <button type="button" onClick={onAddPlace} className="profile__button-add"></button>
       </section>
       <section className="elements">
