@@ -1,7 +1,7 @@
 .element__trash {
-    width: 18px;
+    width: 20px;
     height: 20px;
-    background-image: url('../../../images/trash-icon.png');
+    background-image: url('../../../images/trash-icon-parad.png');
     background-color: transparent;
     background-repeat: no-repeat;
     background-size: cover;
@@ -9,7 +9,7 @@
     transition: 0.5s linear;
     outline: none;
     position: absolute;
-    top: 18px;
+    top: 18px; 
     right: 15px;
     display: none;
   }

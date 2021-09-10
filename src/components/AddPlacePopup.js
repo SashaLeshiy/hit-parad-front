@@ -25,7 +25,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
     }
 
     return (
-        <PopupWithForm name='cards' title='Новое место'
+        <PopupWithForm name='cards' title='Добавить песню'
             submit='Создать'
             isOpen={isOpen}
             onClose={onClose}
@@ -47,7 +47,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
                 id="linkElement"
                 value={cardLink}
                 onChange={handleChangeCardLink}
-                placeholder="Ссылка на песню"
+                placeholder="Ссылка на Яндекс.Музыка"
                 className="input__text input__text_text_link" required />
             <span className="input__text-error linkElement-error" > </span>
         </PopupWithForm>
