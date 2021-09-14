@@ -13,7 +13,8 @@ function Card({ id,
   onCardListen,
   onCardDelete,
   onConfirmDelete,
-  loggedIn
+  loggedIn,
+  rating
 }) {
 
   const userInfo = React.useContext(CurrentUserContext);
@@ -73,7 +74,7 @@ function Card({ id,
               <button type="button" className="element__listen_unactive" disabled></button>
             </div>
           }
-          <p className="element__likeCount">{likes.length}</p>
+          <p className="element__likeCount">{rating}</p>
         </div>
       </div>
     </article>)

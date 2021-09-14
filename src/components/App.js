@@ -154,7 +154,7 @@ function App() {
   function handleCardLike({ id, likes }) {
     const isLiked = likes.some(i => i === currentUser._id);
     let likeMethod = '';
-    isLiked ? likeMethod = api.deleteLike(id) : likeMethod = api.putLike(id);
+    isLiked ? likeMethod = api.deleteLike(id) : likeMethod = api.putLike(id) ;
     likeMethod
       .then((newCard) => {
         setCards((state) => state.map((elem) => elem._id === id ? newCard : elem));
@@ -167,8 +167,11 @@ function App() {
   function handleCardListen({ id }) {
     api.putListen(id)
       .then((newCard) => {
-        console.log(newCard);
+        setCards((state) => state.map((elem) => elem._id === id ? newCard : elem))
       })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   function handleCardDelete({ id }) {

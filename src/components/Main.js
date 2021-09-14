@@ -13,7 +13,7 @@ function Main({ onEditAvatar,
   onCardListen,
   onCardDelete,
   onConfirmDelete,
-  loggedIn
+  loggedIn,
 }) {
 
   // const userInfo = React.useContext(CurrentUserContext);
@@ -39,6 +39,7 @@ function Main({ onEditAvatar,
           <Card key={card._id}
             loggedIn={loggedIn}
             id={card._id}
+            rating={card.rating}
             name={card.title}
             frameSong={card.frameSong}
             link={card.image}

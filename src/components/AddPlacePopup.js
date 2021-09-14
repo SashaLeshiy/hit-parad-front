@@ -26,7 +26,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
 
     return (
         <PopupWithForm name='cards' title='Добавить песню'
-            submit='Создать'
+            submit='Добавить'
             isOpen={isOpen}
             onClose={onClose}
             onSubmit={handleSubmit}
