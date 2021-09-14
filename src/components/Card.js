@@ -1,18 +1,21 @@
 import React from 'react';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
-function Card({ id, 
-  link, 
-  name, 
+function Card({ id,
+  link,
+  name,
   frameSong,
-  likes, 
-  ownerId, 
-  onCardClick, 
-  openPic, 
-  onCardLike, 
-  onCardDelete, 
-  onConfirmDelete }) {
-  
+  likes,
+  ownerId,
+  onCardClick,
+  openPic,
+  onCardLike,
+  onCardListen,
+  onCardDelete,
+  onConfirmDelete,
+  loggedIn
+}) {
+
   const userInfo = React.useContext(CurrentUserContext);
 
   const isOwn = ownerId === userInfo._id;
@@ -25,6 +28,12 @@ function Card({ id,
     onCardLike({
       id: id,
       likes: likes
+    })
+  }
+
+  function handleListenClick() {
+    onCardListen({
+      id: id
     })
   }
 
@@ -53,7 +62,17 @@ function Card({ id,
       <div className="element__text">
         <h2 className="element__heading">{name}</h2>
         <div className="element__likes">
-          <button type="button" onClick={handleLikeClick} className={cardLikeButtonClassName}></button>
+          {loggedIn ?
+            <div className="element__buttons">
+              <button type="button" onClick={handleLikeClick} className={cardLikeButtonClassName}></button>
+              <button type="button" onClick={handleListenClick} className="element__listen"></button>
+            </div>
+            :
+            <div className="element__buttons">
+              <button type="button" className="element__like_unactive" disabled></button>
+              <button type="button" className="element__listen_unactive" disabled></button>
+            </div>
+          }
           <p className="element__likeCount">{likes.length}</p>
         </div>
       </div>

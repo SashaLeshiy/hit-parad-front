@@ -2,7 +2,14 @@ import React from 'react';
 import logo from '../../src/images/logo_parad.png';
 import Navbar from './Navbar.js';
 
-function Header({ loggedIn, email, signOut, loginPage, setLoginPage, linkTo, openMobileMenu, isOpenMobileMenu }) {
+function Header({ loggedIn, 
+      email, 
+      signOut, 
+      loginPage, 
+      setLoginPage, 
+      linkTo, 
+      openMobileMenu, 
+      isOpenMobileMenu }) {
       return (
             (<header className="header section">
                   <a href="/" target="_self">

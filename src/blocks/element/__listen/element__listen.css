@@ -1,0 +1,17 @@
+.element__listen {
+    width: 21px;
+    height: 18px;
+    margin-top: 3px;
+    background-image: url('../../../images/headphones_icon.png');
+    background-color: inherit;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 0;
+    transition: 0.5s linear;
+    outline: none;
+  }
+  
+  .element__listen:hover {
+    opacity: 0.5;
+    cursor: pointer;
+  }

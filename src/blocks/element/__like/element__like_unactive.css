@@ -1,0 +1,27 @@
+.element__like_unactive {
+    width: 21px;
+    height: 18px;
+    margin-top: 3px;
+    background-image: url('../../../images/white_heart.png');
+    background-color: inherit;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 0;
+    transition: 0.5s linear;
+    outline: none;
+    color: #828282;
+  }
+  
+  /* .element__like:hover {
+    opacity: 0.5;
+    cursor: pointer;
+  } */
+  
+  /* .element__like:active {
+    background: url('../../../images/white_red_heart.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 1;
+    border: 0;
+    outline: none;
+  } */

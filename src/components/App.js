@@ -32,7 +32,7 @@ function App() {
   const [isAuth, setIsAuth] = useState(true);
   const [isOpenMobileMenu, setOpenMobileMenu] = useState(false);
   const [isConfirmDeletePopup, setConfirmDeletePopup] = useState(false)
-  const [cards, setCards] = useState([]);
+  const [cards, setCards] = useState(JSON.parse(localStorage.getItem('songs')));
 
   const handleEditAvatarClick = () => {
     setAvatarPopupOpen(true);
@@ -86,23 +86,37 @@ function App() {
             console.log(err);
           });
       })
-      .then(() => {
-        api.getInitialCards()
-          .then((res) => {
-            setCards(res);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      })
+      // .then(() => {
+      //   api.getInitialCards()
+      //     .then((res) => {
+      //       setCards(res);
+      //     })
+      //     .catch((err) => {
+      //       console.log(err);
+      //     });
+      // })
       .catch((err) => {
         console.log(err);
       });
   }
 
   useEffect(() => {
+    getSongs();
     tokenCheck();
   }, [])
+
+
+  function getSongs() {
+    api.getInitialCards()
+      .then((res) => {
+        localStorage.setItem('songs', JSON.stringify(res));
+        setCards(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+
 
   function handleUpdateUser({ name, about }) {
     api.setUser(name, about)
@@ -148,6 +162,13 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  function handleCardListen({ id }) {
+    api.putListen(id)
+      .then((newCard) => {
+        console.log(newCard);
+      })
   }
 
   function handleCardDelete({ id }) {
@@ -210,7 +231,6 @@ function App() {
   function openMobileMenu() {
     isOpenMobileMenu ? setOpenMobileMenu(false) : setOpenMobileMenu(true);
   }
-
   return (
     <div className="page">
       <div className="page__container">
@@ -239,21 +259,24 @@ function App() {
             <Route exact path="/signin" >
               <Login onLogin={onLogin} />
             </Route>
-            <ProtectedRoute exact path="/" component={Main} loggedIn={loggedIn}
+            <Route exact path="/">
+              <Main loggedIn={loggedIn}
               onEditProfile={handleEditProfileClick}
               onAddPlace={handleAddPlaceClick}
               onEditAvatar={handleEditAvatarClick}
               dataImage={setSelectedCard}
               openPopImage={handleCardClick}
+              setCards={setCards}
               cards={cards}
               onCardLike={handleCardLike}
+              onCardListen={handleCardListen}
               onCardDelete={handleCardDelete}
               onConfirmDelete={handleDeleteCard}
-            >
-            </ProtectedRoute>
-            <Route>
-              {loggedIn ? <Redirect to="/" /> : <Redirect to="/signin" />}
+            />
             </Route>
+            {/* <Route>
+              {loggedIn ? <Redirect to="/" /> : <Redirect to="/signin" />}
+            </Route> */}
           </Switch>
           <Footer />
           <AddPlacePopup

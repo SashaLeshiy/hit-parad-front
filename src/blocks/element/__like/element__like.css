@@ -1,9 +1,9 @@
 .element__like {
   width: 21px;
   height: 18px;
-  margin-top: 6px;
-  background-image: url('../../../images/heart-icon.svg');
-  background-color: #ffffff;
+  margin-top: 3px;
+  background-image: url('../../../images/white_heart.png');
+  background-color: inherit;
   background-repeat: no-repeat;
   background-size: cover;
   border: 0;
@@ -17,7 +17,7 @@
 }
 
 .element__like:active {
-  background: url('../../../images/black_heart_icon.svg');
+  background: url('../../../images/white_red_heart.png');
   background-repeat: no-repeat;
   background-size: cover;
   opacity: 1;

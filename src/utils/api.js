@@ -20,11 +20,10 @@ getUserInfo() {
 }
 
 getInitialCards() {   
-  const token = localStorage.getItem('token');
-  
+  // const token = localStorage.getItem('token');
     return fetch(`${this.url}/cards`, {
         headers: {
-          authorization: 'Bearer ' + token,
+          // authorization: 'Bearer ' + token,
           'Content-Type': 'application/json',
         }
         })
@@ -81,6 +80,18 @@ deleteCard(cardId) {
 putLike(cardId) {
   const token = localStorage.getItem('token');
   return fetch(`${this.url}/cards/${cardId}/likes`, {
+    method: 'PUT',
+    headers: {
+      authorization: 'Bearer ' + token,
+      'Content-Type': 'application/json',
+    }
+    })
+    .then(this._checkResponse)
+}
+
+putListen(cardId) {
+  const token = localStorage.getItem('token');
+  return fetch(`${this.url}/cards/${cardId}/listen`, {
     method: 'PUT',
     headers: {
       authorization: 'Bearer ' + token,

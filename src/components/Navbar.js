@@ -1,6 +1,13 @@
 import React from 'react';
 
-function Navbar({ loggedIn, email, signOut, loginPage, linkTo, openMobileMenu, isOpenMobileMenu }) {
+function Navbar({ loggedIn, 
+    email, 
+    signOut, 
+    loginPage, 
+    onAddPlace,
+    linkTo, 
+    openMobileMenu, 
+    isOpenMobileMenu }) {
 
     return (
         (<ul className="header__menu">
@@ -16,7 +23,7 @@ function Navbar({ loggedIn, email, signOut, loginPage, linkTo, openMobileMenu, i
                     <li><button onClick={signOut} className="header__button header__button_isLogin">Выйти</button></li>
                 </>
                 :
-                (<li><button onClick={linkTo} className="header__button">{loginPage ? 'Регистрация' : 'Войти'}</button></li>)
+                (<li><button onClick={linkTo} className="header__button">{loginPage ? 'Регистрация/Войти' : 'Войти'}</button></li>)
             }
         </ul>)
     );

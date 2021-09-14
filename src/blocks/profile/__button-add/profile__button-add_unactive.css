@@ -1,0 +1,32 @@
+.profile__button-add_unactive {
+    /* margin-left: auto; */
+    width: 116px;
+    height: 50px;
+    /* border: 1px solid #FFFFFF; */
+    border: none;
+    background-color: #000000;
+    /* background-image: url('../../../images/plus-icon.svg');
+    background-repeat: no-repeat;
+    background-position: center; */
+    align-self: center;
+    transition: opacity 0.7s linear;
+    /* border-radius: 2px; */
+    color: #828282;
+  }
+  
+  /* .profile__button-add_unactive:hover {
+    opacity: 0.6;
+    cursor: pointer;
+  } */
+  
+  @media screen and (max-width: 660px) {
+    .profile__button-add_unactive {
+      flex-basis: 100%;
+    }
+  }
+  
+  @media screen and (max-width: 320px) {
+    .profile__button-add_unactive {
+      background-size: 16px 16px;
+    }
+  }

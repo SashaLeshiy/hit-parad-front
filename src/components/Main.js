@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Card from '../components/Card';
-import { CurrentUserContext } from '../contexts/CurrentUserContext';
+// import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function Main({ onEditAvatar,
   onEditProfile,
@@ -8,10 +8,14 @@ function Main({ onEditAvatar,
   dataImage,
   openPopImage,
   cards,
+  setCards,
   onCardLike,
+  onCardListen,
   onCardDelete,
-  onConfirmDelete
+  onConfirmDelete,
+  loggedIn
 }) {
+
   // const userInfo = React.useContext(CurrentUserContext);
   return (
     (<main className="content section">
@@ -24,11 +28,16 @@ function Main({ onEditAvatar,
           <button type="button" onClick={onEditProfile} className="profile__button-edit"></button>
           <p className="profile__subheading">{userInfo.about}</p>
         </div> */}
-        <button type="button" onClick={onAddPlace} className="profile__button-add"></button>
+        {loggedIn ?
+          <button type="button" onClick={onAddPlace} className="profile__button-add">&#10010; Добавить</button>
+          :
+          <button type="button" onClick={onAddPlace} className="profile__button-add_unactive" disabled>&#10010; Добавить</button>
+        }
       </section>
       <section className="elements">
         {(cards.map(card => (
           <Card key={card._id}
+            loggedIn={loggedIn}
             id={card._id}
             name={card.title}
             frameSong={card.frameSong}
@@ -38,6 +47,7 @@ function Main({ onEditAvatar,
             onCardClick={dataImage}
             openPic={openPopImage}
             onCardLike={onCardLike}
+            onCardListen={onCardListen}
             onCardDelete={onCardDelete}
             onConfirmDelete={onConfirmDelete}
           />
