@@ -23,7 +23,7 @@ function Navbar({ loggedIn,
                     <li><button onClick={signOut} className="header__button header__button_isLogin">Выйти</button></li>
                 </>
                 :
-                (<li><button onClick={linkTo} className="header__button">{loginPage ? 'Регистрация/Войти' : 'Войти'}</button></li>)
+                (<li><button onClick={linkTo} className="header__button">{loginPage ? 'Регистрация' : 'Войти'}</button></li>)
             }
         </ul>)
     );

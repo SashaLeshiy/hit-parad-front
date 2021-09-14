@@ -147,6 +147,9 @@ function App() {
         closeAllPopups();
       })
       .catch((err) => {
+        closeAllPopups();
+        setIsAuth(false);
+        setInfoTooltipOpen(true);
         console.log(err);
       });
   }

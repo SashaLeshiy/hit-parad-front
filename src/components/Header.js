@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../src/images/logo_parad.png';
+import logo from '../../src/images/logo_stuff.png';
 import Navbar from './Navbar.js';
 
 function Header({ loggedIn, 
