@@ -9,6 +9,7 @@ function Card({ id,
   ownerId,
   onCardClick,
   openPic,
+  openSong,
   onCardLike,
   onCardListen,
   onCardDelete,
@@ -33,8 +34,12 @@ function Card({ id,
   }
 
   function handleListenClick() {
+    openSong();
     onCardListen({
-      id: id
+      link: link,
+      name: name,
+      id: id,
+      frameSong: frameSong,
     })
   }
 
@@ -46,6 +51,12 @@ function Card({ id,
       id: id,
       frameSong: frameSong,
     });
+    onCardListen({
+      link: link,
+      name: name,
+      id: id,
+      frameSong: frameSong,
+    })
   }
 
   function handleDeleteClick() {
@@ -66,12 +77,12 @@ function Card({ id,
           {loggedIn ?
             <div className="element__buttons">
               <button type="button" onClick={handleLikeClick} className={cardLikeButtonClassName}></button>
-              <button type="button" onClick={handleListenClick} className="element__listen"></button>
+              {/* <button type="button" onClick={handleListenClick} className="element__listen"></button> */}
             </div>
             :
             <div className="element__buttons">
               <button type="button" className="element__like_unactive" disabled></button>
-              <button type="button" className="element__listen_unactive" disabled></button>
+              {/* <button type="button" className="element__listen_unactive" disabled></button> */}
             </div>
           }
           <p className="element__likeCount">{rating}</p>

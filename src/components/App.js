@@ -300,6 +300,7 @@ function App() {
             onCardDelete={handleCardDelete}
           />
           <EditAvatarPopup
+            card={selectedCard}
             isOpen={isEditAvatarPopupOpen}
             onClose={closeAllPopups}
             onUpdateAvatar={handleUpdateAvatar} />

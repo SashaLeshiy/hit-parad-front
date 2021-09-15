@@ -15,7 +15,9 @@ function Main({ onEditAvatar,
   onConfirmDelete,
   loggedIn,
 }) {
-
+  cards.sort((a,b) => {
+    return b.rating - a.rating;
+  })
   // const userInfo = React.useContext(CurrentUserContext);
   return (
     (<main className="content section">
@@ -46,6 +48,7 @@ function Main({ onEditAvatar,
             likes={card.likes}
             ownerId={card.owner}
             onCardClick={dataImage}
+            openSong={onEditAvatar}
             openPic={openPopImage}
             onCardLike={onCardLike}
             onCardListen={onCardListen}

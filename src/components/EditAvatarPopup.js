@@ -1,7 +1,8 @@
 import React, { useRef } from 'react';
 import PopupWithForm from './PopupWithForm';
 
-function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
+function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }
+    ) {
     const avaLink = useRef();
 
     function handleSubmit(event) {
@@ -29,7 +30,7 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
                 className="input__text input__text_text_link" required />
             <span className="input__text-error linkAva-error" > </span>
         </PopupWithForm>
-    )
+     )
 }
 
 export default EditAvatarPopup;
