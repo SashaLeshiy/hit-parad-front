@@ -70,3 +70,4 @@
 @import url('../src/blocks/mobileMenu/__button/mobileMenu__button.css');
 @import url('../src/blocks/mobileMenu/_active/mobileMenu_active.css');
 @import url('../src/blocks/preloader/preloader.css');
+@import url('../src/blocks/error404/Error404.css');

@@ -15,6 +15,7 @@ function Main({ onEditAvatar,
   onCardDelete,
   onConfirmDelete,
   loggedIn,
+  showLoader
 }) {
   cards.sort((a,b) => {
     return b.rating - a.rating;
@@ -55,6 +56,7 @@ function Main({ onEditAvatar,
             onCardListen={onCardListen}
             onCardDelete={onCardDelete}
             onConfirmDelete={onConfirmDelete}
+            showLoader={showLoader}
           />
         )))}
       {/* <Preloader/> */}

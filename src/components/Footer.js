@@ -1,8 +1,8 @@
 import React from 'react';
 
-function Footer() {
+function Footer({ headlessPage }) {
       return (
-            (<footer className="footer section">
+            (<footer className={`footer section ${headlessPage ? "hidden" : ""}`}>
                   <p className="footer__copyright">&copy; {new Date().getFullYear()} Just Real Stuff</p>
             </footer>)
       );

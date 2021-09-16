@@ -15,7 +15,8 @@ function Card({ id,
   onCardDelete,
   onConfirmDelete,
   loggedIn,
-  rating
+  rating,
+  showLoader
 }) {
 
   const userInfo = React.useContext(CurrentUserContext);
@@ -33,17 +34,18 @@ function Card({ id,
     })
   }
 
-  function handleListenClick() {
-    openSong();
-    onCardListen({
-      link: link,
-      name: name,
-      id: id,
-      frameSong: frameSong,
-    })
-  }
+  // function handleListenClick() {
+  //   openSong();
+  //   onCardListen({
+  //     link: link,
+  //     name: name,
+  //     id: id,
+  //     frameSong: frameSong,
+  //   })
+  // }
 
   function handleClick() {
+    showLoader();
     openPic();
     onCardClick({
       link: link,

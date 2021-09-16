@@ -9,9 +9,11 @@ function Header({ loggedIn,
       setLoginPage, 
       linkTo, 
       openMobileMenu, 
-      isOpenMobileMenu }) {
+      isOpenMobileMenu,
+      headlessPage
+ }) {
       return (
-            (<header className="header section">
+            (<header className={`header section ${headlessPage ? "hidden" : ""}`}>
                   <a href="/" target="_self">
                         <img src={logo} className="header__logo" alt="логотип Mesto Russia" />
                   </a>

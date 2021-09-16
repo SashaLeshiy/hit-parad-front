@@ -2,7 +2,7 @@ import React from 'react'
 
 const Preloader = () => {
     return (
-        <div class="lds-ripple"><div></div><div></div></div>
+        <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
     )
 };
 

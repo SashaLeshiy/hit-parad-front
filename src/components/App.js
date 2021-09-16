@@ -13,9 +13,10 @@ import ConfirmDeletePopup from './ConfirmDeletePopup';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import Login from './Login.js';
 import Register from './Register.js';
-import ProtectedRoute from './ProtectedRoute';
+// import ProtectedRoute from './ProtectedRoute';
 import * as auth from '../utils/auth.js';
 import MobileMenu from './MobileMenu';
+import Error404 from './Error404';
 
 function App() {
   const history = useHistory();
@@ -34,6 +35,8 @@ function App() {
   const [isConfirmDeletePopup, setConfirmDeletePopup] = useState(false)
   const [cards, setCards] = useState(JSON.parse(localStorage.getItem('songs')));
   const [textSubmit, setTextSubmit] = useState('Добавить');
+  const [isLoading, setIsLoading] = useState(false);
+  const [headlessPage, setHeadlessPage] = useState(false);
 
   const handleEditAvatarClick = () => {
     setAvatarPopupOpen(true);
@@ -63,6 +66,10 @@ function App() {
     setInfoTooltipOpen(false);
     setConfirmDeletePopup(false);
     setIsAuth(true);
+  }
+
+  function showLoader() {
+    setIsLoading(!isLoading);
   }
 
   function tokenCheck() {
@@ -238,6 +245,11 @@ function App() {
     }
   }
 
+  function linkToBack() {
+    history.goBack();
+    setHeadlessPage(false);
+  }
+
   function openMobileMenu() {
     isOpenMobileMenu ? setOpenMobileMenu(false) : setOpenMobileMenu(true);
   }
@@ -261,6 +273,7 @@ function App() {
             linkTo={linkTo}
             openMobileMenu={openMobileMenu}
             isOpenMobileMenu={isOpenMobileMenu}
+            headlessPage={headlessPage}
           />
           <Switch >
             <Route exact path="/signup">
@@ -282,13 +295,17 @@ function App() {
               onCardListen={handleCardListen}
               onCardDelete={handleCardDelete}
               onConfirmDelete={handleDeleteCard}
+              showLoader={showLoader}
             />
             </Route>
+            <Route path="/*" >
+            <Error404 linkToBack={linkToBack} setHeadlessPage={setHeadlessPage} />
+          </Route>
             {/* <Route>
               {loggedIn ? <Redirect to="/" /> : <Redirect to="/signin" />}
             </Route> */}
           </Switch>
-          <Footer />
+          <Footer headlessPage={headlessPage}/>
           <AddPlacePopup
             isOpen={isAddPlacePopupOpen}
             onClose={closeAllPopups}
@@ -313,7 +330,11 @@ function App() {
           <ImagePopup
             card={selectedCard}
             onClose={closeAllPopups}
-            isOpen={isImagePopupOpen} />
+            isOpen={isImagePopupOpen} 
+            setIsLoading={setIsLoading}
+            isLoading={isLoading}
+            showLoader={showLoader}
+            />
           <InfoTooltip
             isOpen={isInfoTooltipOpen}
             onClose={closeAllPopups}
