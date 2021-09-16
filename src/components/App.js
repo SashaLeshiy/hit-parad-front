@@ -33,6 +33,7 @@ function App() {
   const [isOpenMobileMenu, setOpenMobileMenu] = useState(false);
   const [isConfirmDeletePopup, setConfirmDeletePopup] = useState(false)
   const [cards, setCards] = useState(JSON.parse(localStorage.getItem('songs')));
+  const [textSubmit, setTextSubmit] = useState('Добавить');
 
   const handleEditAvatarClick = () => {
     setAvatarPopupOpen(true);
@@ -145,13 +146,16 @@ function App() {
       .then((res) => {
         setCards([res, ...cards])
         closeAllPopups();
+        setTextSubmit('Добавить');
       })
       .catch((err) => {
         closeAllPopups();
         setIsAuth(false);
         setInfoTooltipOpen(true);
         console.log(err);
+        setTextSubmit('Добавить');
       });
+      
   }
 
   function handleCardLike({ id, likes }) {
@@ -289,6 +293,8 @@ function App() {
             isOpen={isAddPlacePopupOpen}
             onClose={closeAllPopups}
             onAddPlace={handleAddPlace}
+            textSubmit={textSubmit}
+            setTextSubmit={setTextSubmit}
           />
           <EditProfilePopup
             isOpen={isEditProfilePopupOpen}

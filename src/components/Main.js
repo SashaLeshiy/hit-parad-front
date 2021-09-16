@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Card from '../components/Card';
+import Preloader from './Preloader';
 // import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function Main({ onEditAvatar,
@@ -56,6 +57,7 @@ function Main({ onEditAvatar,
             onConfirmDelete={onConfirmDelete}
           />
         )))}
+      {/* <Preloader/> */}
       </section>
     </main>)
   );

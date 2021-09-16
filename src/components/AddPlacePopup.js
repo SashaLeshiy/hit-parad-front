@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import PopupWithForm from './PopupWithForm';
+// import Preloader from './Preloader';
 
-function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
+function AddPlacePopup({ isOpen, onClose, onAddPlace, setTextSubmit, textSubmit }) {
 
     // const [cardName, setCardName] = useState('');
     const [cardLink, setCardLink] = useState('');
-
+    
     // function handleChangeCardName(event) {
     //     setCardName(event.target.value)
     // }
@@ -16,6 +17,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
 
     function handleSubmit(event) {
         event.preventDefault();
+        setTextSubmit('Добавляем...');
         onAddPlace({
             // name: cardName,
             link: cardLink,
@@ -26,7 +28,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
 
     return (
         <PopupWithForm name='cards' title='Добавить песню'
-            submit='Добавить'
+            submit={textSubmit}
             isOpen={isOpen}
             onClose={onClose}
             onSubmit={handleSubmit}

@@ -69,3 +69,4 @@
 @import url('../src/blocks/mobileMenu/__close/mobileMenu__close.css');
 @import url('../src/blocks/mobileMenu/__button/mobileMenu__button.css');
 @import url('../src/blocks/mobileMenu/_active/mobileMenu_active.css');
+@import url('../src/blocks/preloader/preloader.css');
