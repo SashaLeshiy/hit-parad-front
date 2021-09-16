@@ -12,7 +12,7 @@ function ImagePopup({ card, onClose, isOpen, setIsLoading, isLoading, showLoader
                     <button type="button" onClick={onClose} className="popup__close"></button>
                     <div className="popup__frame">
                         <iframe frameBorder="0" className="popup__imageFrame" title="yandexframe"
-                            src={card.frameSong} ></iframe>
+                            src={card.frameSong} ></iframe>   
                         <p className="popup__imageName">{card.name}</p>
                     </div>
                 </div>
