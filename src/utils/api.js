@@ -49,7 +49,8 @@ setUser(userName, info) {
   .then(this._checkResponse);
 }
 
-setCard(cardName, link) {
+setCard(link) {
+  console.log(link);
   const token = localStorage.getItem('token');
   return fetch(`${this.url}/cards`, {
   method: 'POST',
@@ -58,7 +59,7 @@ setCard(cardName, link) {
     'Content-Type': 'application/json',
   },
   body: JSON.stringify({
-    name: cardName,
+    // name: cardName,
     link: link
   }),
   })

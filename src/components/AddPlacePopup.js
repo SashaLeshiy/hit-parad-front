@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import PopupWithForm from './PopupWithForm';
 // import Preloader from './Preloader';
+import { connect } from "react-redux";
+
+import { addCard } from "../store/actions/cardActions"
 
 function AddPlacePopup({ isOpen, onClose, onAddPlace, setTextSubmit, textSubmit }) {
 
@@ -18,8 +21,8 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace, setTextSubmit, textSubmit 
     function handleSubmit(event) {
         event.preventDefault();
         setTextSubmit('Добавляем...');
-        onAddPlace({
-            // name: cardName,
+        addCard({
+            // name: cardName, onAddPlace
             link: cardLink,
         })
         setCardLink('');
@@ -56,4 +59,4 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace, setTextSubmit, textSubmit 
     )
 }
 
-export default AddPlacePopup;
+export default connect(null, {addCard})(AddPlacePopup);

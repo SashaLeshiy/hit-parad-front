@@ -1,14 +1,16 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Card from '../components/Card';
-import Preloader from './Preloader';
+// import Preloader from './Preloader';
+import { useSelector } from "react-redux";
 // import { CurrentUserContext } from '../contexts/CurrentUserContext';
+// import { getCards } from "../store/actions/cardActions";
 
 function Main({ onEditAvatar,
   onEditProfile,
   onAddPlace,
   dataImage,
   openPopImage,
-  cards,
+  // cards,
   setCards,
   onCardLike,
   onCardListen,
@@ -17,6 +19,8 @@ function Main({ onEditAvatar,
   loggedIn,
   showLoader
 }) {
+  const cards = useSelector((state) => state.cardReducer.cards);
+
   cards.sort((a,b) => {
     return b.rating - a.rating;
   })
