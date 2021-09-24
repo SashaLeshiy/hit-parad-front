@@ -1,10 +1,12 @@
 import { api } from "../../utils/api";
 import * as actions from "./index";
 
-export const addCard = ({ link }) => dispatch => {
+export const addCard = ({ link }) => {
+    return dispatch => {
     api.setCard(link)
         // type: actions.ADD_CARD,
         // link
+        // const token = localStorage.getItem('token');
         // return fetch(`${URL}/cards`, {
         //     method: 'POST',
         //     headers: {
@@ -15,13 +17,14 @@ export const addCard = ({ link }) => dispatch => {
         //         link: link
         //     }),
         // })
-        .then((data) => {
-            console.log(data);
-            dispatch({ type: actions.ADD_CARD, data });
+        .then((res) => {
+            console.log(res);
+            dispatch({ type: actions.ADD_CARD, res });
         })
         .catch((err) => {
             dispatch(console.log(err));
         })
+    }
 }
 
 // function handleAddPlace({ name, link }) {

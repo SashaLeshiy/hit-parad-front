@@ -4,6 +4,7 @@ export default class Api {
         this.headers = config.headers;
     } 
 
+    
 getUserInfo() {
   const token = localStorage.getItem('token');
 
@@ -50,7 +51,6 @@ setUser(userName, info) {
 }
 
 setCard(link) {
-  console.log(link);
   const token = localStorage.getItem('token');
   return fetch(`${this.url}/cards`, {
   method: 'POST',

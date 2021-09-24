@@ -102,8 +102,7 @@ function App() {
         console.log(err);
       });
   }
-  // dispatch(getCards());
-
+  
   useEffect(() => {
     // getSongs();
     dispatch(getCards());
@@ -161,38 +160,38 @@ function App() {
       
   // }
 
-  // function handleCardLike({ id, likes }) {
-  //   const isLiked = likes.some(i => i === currentUser._id);
-  //   let likeMethod = '';
-  //   isLiked ? likeMethod = api.deleteLike(id) : likeMethod = api.putLike(id) ;
-  //   likeMethod
-  //     .then((newCard) => {
-  //       setCards((state) => state.map((elem) => elem._id === id ? newCard : elem));
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }
+  function handleCardLike({ id, likes }) {
+    const isLiked = likes.some(i => i === currentUser._id);
+    let likeMethod = '';
+    isLiked ? likeMethod = api.deleteLike(id) : likeMethod = api.putLike(id) ;
+    likeMethod
+      .then((newCard) => {
+        dispatch(getCards((state) => state.map((elem) => elem._id === id ? newCard : elem)));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
-  // function handleCardListen({ id }) {
-  //   api.putListen(id)
-  //     .then((newCard) => {
-  //       setCards((state) => state.map((elem) => elem._id === id ? newCard : elem))
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }
+  function handleCardListen({ id }) {
+    api.putListen(id)
+      .then((newCard) => {
+        dispatch(getCards((state) => state.map((elem) => elem._id === id ? newCard : elem)));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
-  // function handleCardDelete({ id }) {
-  //   api.deleteCard(id)
-  //     .then(() => {
-  //       setCards((state) => state.filter((elem) => elem._id !== id))
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     })
-  // }
+  function handleCardDelete({ id }) {
+    api.deleteCard(id)
+      .then(() => {
+        dispatch(getCards((state) => state.filter((elem) => elem._id !== id)));
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
 
 
   function onRegister(data) {
@@ -288,9 +287,9 @@ function App() {
               openPopImage={handleCardClick}
               // setCards={setCards}
               // cards={cards}
-              // onCardLike={handleCardLike}
-              // onCardListen={handleCardListen}
-              // onCardDelete={handleCardDelete}
+              onCardLike={handleCardLike}
+              onCardListen={handleCardListen}
+              onCardDelete={handleCardDelete}
               onConfirmDelete={handleDeleteCard}
               showLoader={showLoader}
             />

@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from '../components/Card';
-// import Preloader from './Preloader';
+import Preloader from './Preloader';
 import { useSelector } from "react-redux";
 // import { CurrentUserContext } from '../contexts/CurrentUserContext';
 // import { getCards } from "../store/actions/cardActions";
@@ -21,9 +21,10 @@ function Main({ onEditAvatar,
 }) {
   const cards = useSelector((state) => state.cardReducer.cards);
 
-  cards.sort((a,b) => {
+  if(cards) {cards.sort((a,b) => {
     return b.rating - a.rating;
   })
+}
   // const userInfo = React.useContext(CurrentUserContext);
   return (
     (<main className="content section">
@@ -43,7 +44,8 @@ function Main({ onEditAvatar,
         }
       </section>
       <section className="elements">
-        {(cards.map(card => (
+        {cards ?
+        (cards.map(card => (
           <Card key={card._id}
             loggedIn={loggedIn}
             id={card._id}
@@ -62,8 +64,9 @@ function Main({ onEditAvatar,
             onConfirmDelete={onConfirmDelete}
             showLoader={showLoader}
           />
-        )))}
-      {/* <Preloader/> */}
+        )))
+      :<Preloader/>
+        }
       </section>
     </main>)
   );

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import PopupWithForm from './PopupWithForm';
 // import Preloader from './Preloader';
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 
 import { addCard } from "../store/actions/cardActions"
 
@@ -9,7 +10,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace, setTextSubmit, textSubmit 
 
     // const [cardName, setCardName] = useState('');
     const [cardLink, setCardLink] = useState('');
-    
+    const dispatch = useDispatch();
     // function handleChangeCardName(event) {
     //     setCardName(event.target.value)
     // }
@@ -21,12 +22,11 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace, setTextSubmit, textSubmit 
     function handleSubmit(event) {
         event.preventDefault();
         setTextSubmit('Добавляем...');
-        addCard({
+        dispatch(addCard({
             // name: cardName, onAddPlace
             link: cardLink,
-        })
+        }))
         setCardLink('');
-        // setCardName('');
     }
 
     return (
@@ -59,4 +59,4 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace, setTextSubmit, textSubmit 
     )
 }
 
-export default connect(null, {addCard})(AddPlacePopup);
+export default AddPlacePopup;
