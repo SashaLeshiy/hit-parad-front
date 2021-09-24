@@ -3,27 +3,13 @@ import * as actions from "./index";
 
 export const addCard = ({ link }) => {
     return dispatch => {
-    api.setCard(link)
-        // type: actions.ADD_CARD,
-        // link
-        // const token = localStorage.getItem('token');
-        // return fetch(`${URL}/cards`, {
-        //     method: 'POST',
-        //     headers: {
-        //         authorization: 'Bearer ' + token,
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify({
-        //         link: link
-        //     }),
-        // })
-        .then((res) => {
-            console.log(res);
-            dispatch({ type: actions.ADD_CARD, res });
-        })
-        .catch((err) => {
-            dispatch(console.log(err));
-        })
+        api.setCard(link)
+            .then((res) => {
+                dispatch({ type: actions.ADD_CARD, res });
+            })
+            .catch((err) => {
+                dispatch(console.log(err));
+            })
     }
 }
 
@@ -44,20 +30,14 @@ export const addCard = ({ link }) => {
 
 export const getCards = () => {
     return dispatch => {
-    api.getInitialCards()
-        // return fetch(`${URL}/cards`, {
-        //     headers: {
-        //       // authorization: 'Bearer ' + token,
-        //       'Content-Type': 'application/json',
-        //     }
-        //     })
-        .then((res) => {
-            localStorage.setItem('songs', JSON.stringify(res));
-            dispatch({ type: actions.GET_CARDS, cards: res })
-        })
-        .catch((err) => {
-            dispatch(console.log(err));
-        })
+        api.getInitialCards()
+            .then((res) => {
+                localStorage.setItem('songs', JSON.stringify(res));
+                dispatch({ type: actions.GET_CARDS, cards: res })
+            })
+            .catch((err) => {
+                dispatch(console.log(err));
+            })
     }
 }
 

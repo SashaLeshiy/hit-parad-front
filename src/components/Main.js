@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Card from '../components/Card';
 import Preloader from './Preloader';
 import { useSelector } from "react-redux";
@@ -19,8 +19,9 @@ function Main({ onEditAvatar,
   loggedIn,
   showLoader
 }) {
+  
   const cards = useSelector((state) => state.cardReducer.cards);
-
+  
   if(cards) {cards.sort((a,b) => {
     return b.rating - a.rating;
   })

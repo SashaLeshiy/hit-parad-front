@@ -308,6 +308,7 @@ function App() {
             // onAddPlace={handleAddPlace}
             textSubmit={textSubmit}
             setTextSubmit={setTextSubmit}
+            closeAllPopups={closeAllPopups}
           />
           <EditProfilePopup
             isOpen={isEditProfilePopupOpen}

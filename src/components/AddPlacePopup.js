@@ -6,7 +6,13 @@ import PopupWithForm from './PopupWithForm';
 
 import { addCard } from "../store/actions/cardActions"
 
-function AddPlacePopup({ isOpen, onClose, onAddPlace, setTextSubmit, textSubmit }) {
+function AddPlacePopup({ isOpen,
+     onClose,
+     onAddPlace,
+     setTextSubmit,
+     textSubmit,
+     closeAllPopups
+    }) {
 
     // const [cardName, setCardName] = useState('');
     const [cardLink, setCardLink] = useState('');
@@ -26,6 +32,8 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace, setTextSubmit, textSubmit 
             // name: cardName, onAddPlace
             link: cardLink,
         }))
+        closeAllPopups();
+        setTextSubmit('Добавить');
         setCardLink('');
     }
 
