@@ -10,6 +10,9 @@ const reducer = (state = initialState, action) => {
         case actions.ADD_CARD:
             return {...state, cards: [action.res, ...state.cards]}
 
+        case actions.DELETE_CARD:
+            return {...state, cards: state.cards.filter(card => card.id !== action.id) }
+
         default:
             return state;
     }

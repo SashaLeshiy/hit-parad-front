@@ -1,6 +1,7 @@
 import React from 'react';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
+
 function Card({ id,
   link,
   name,
@@ -16,7 +17,10 @@ function Card({ id,
   onConfirmDelete,
   loggedIn,
   rating,
-  showLoader
+  showLoader,
+  setConfirmDeletePopup,
+  isConfirmDeletePopup,
+  closeAllPopups
 }) {
 
   const userInfo = React.useContext(CurrentUserContext);
@@ -62,10 +66,13 @@ function Card({ id,
   }
 
   function handleDeleteClick() {
-    onCardDelete({
-      id: id,
-    });
+    localStorage.setItem('deleteCardId', id);
+    onConfirmDelete({ id: id, });
+    // onCardDelete({
+    //   id: id,
+    // });
   }
+  
 
   return (
     (<article className="element" >
@@ -90,7 +97,8 @@ function Card({ id,
           <p className="element__likeCount">{rating}</p>
         </div>
       </div>
-    </article>)
+    </article>
+    )
   );
 
 }

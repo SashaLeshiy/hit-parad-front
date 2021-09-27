@@ -40,7 +40,7 @@ function App() {
   const [textSubmit, setTextSubmit] = useState('Добавить');
   const [isLoading, setIsLoading] = useState(false);
   const [headlessPage, setHeadlessPage] = useState(false);
- 
+
 
   const handleEditAvatarClick = () => {
     setAvatarPopupOpen(true);
@@ -58,7 +58,7 @@ function App() {
     setImagePopupOpen(true);
   }
 
-  const handleDeleteCard = () => {
+  const handleDeleteCard = (id) => {
     setConfirmDeletePopup(true);
   }
 
@@ -102,13 +102,13 @@ function App() {
         console.log(err);
       });
   }
-  
+
   useEffect(() => {
     // getSongs();
     dispatch(getCards());
     tokenCheck();
   }, [dispatch])
- 
+
   // function getSongs() {
   //   api.getInitialCards()
   //     .then((res) => {
@@ -157,13 +157,13 @@ function App() {
   //       console.log(err);
   //       setTextSubmit('Добавить');
   //     });
-      
+
   // }
 
   function handleCardLike({ id, likes }) {
     const isLiked = likes.some(i => i === currentUser._id);
     let likeMethod = '';
-    isLiked ? likeMethod = api.deleteLike(id) : likeMethod = api.putLike(id) ;
+    isLiked ? likeMethod = api.deleteLike(id) : likeMethod = api.putLike(id);
     likeMethod
       .then((newCard) => {
         dispatch(getCards((state) => state.map((elem) => elem._id === id ? newCard : elem)));
@@ -183,15 +183,15 @@ function App() {
       });
   }
 
-  function handleCardDelete({ id }) {
-    api.deleteCard(id)
-      .then(() => {
-        dispatch(getCards((state) => state.filter((elem) => elem._id !== id)));
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  }
+  // function handleCardDelete({ id }) {
+  //   api.deleteCard(id)
+  //     .then(() => {
+  //       dispatch(getCards((state) => state.filter((elem) => elem._id !== id)));
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     })
+  // }
 
 
   function onRegister(data) {
@@ -224,7 +224,7 @@ function App() {
   };
 
   const signOut = () => {
-    localStorage.removeItem('token');
+    localStorage.clear();
     setLoggedIn(false);
     history.push('/signin');
     setLoginPage(true);
@@ -279,29 +279,32 @@ function App() {
             </Route>
             <Route exact path="/">
               <Main
-              loggedIn={loggedIn}
-              onEditProfile={handleEditProfileClick}
-              onAddPlace={handleAddPlaceClick}
-              onEditAvatar={handleEditAvatarClick}
-              dataImage={setSelectedCard}
-              openPopImage={handleCardClick}
-              // setCards={setCards}
-              // cards={cards}
-              onCardLike={handleCardLike}
-              onCardListen={handleCardListen}
-              onCardDelete={handleCardDelete}
-              onConfirmDelete={handleDeleteCard}
-              showLoader={showLoader}
+                loggedIn={loggedIn}
+                onEditProfile={handleEditProfileClick}
+                onAddPlace={handleAddPlaceClick}
+                onEditAvatar={handleEditAvatarClick}
+                dataImage={setSelectedCard}
+                openPopImage={handleCardClick}
+                // setCards={setCards}
+                // cards={cards}
+                onCardLike={handleCardLike}
+                onCardListen={handleCardListen}
+                // onCardDelete={handleCardDelete}
+                onConfirmDelete={handleDeleteCard}
+                showLoader={showLoader}
+                setConfirmDeletePopup={setConfirmDeletePopup}
+                isConfirmDeletePopup={isConfirmDeletePopup}
+                closeAllPopups={closeAllPopups}
             />
             </Route>
             <Route path="/*" >
-            <Error404 linkToBack={linkToBack} setHeadlessPage={setHeadlessPage} />
-          </Route>
+              <Error404 linkToBack={linkToBack} setHeadlessPage={setHeadlessPage} />
+            </Route>
             {/* <Route>
               {loggedIn ? <Redirect to="/" /> : <Redirect to="/signin" />}
             </Route> */}
           </Switch>
-          <Footer headlessPage={headlessPage}/>
+          <Footer headlessPage={headlessPage} />
           <AddPlacePopup
             isOpen={isAddPlacePopupOpen}
             onClose={closeAllPopups}
@@ -318,6 +321,7 @@ function App() {
             isOpen={isConfirmDeletePopup}
             onClose={closeAllPopups}
             // onCardDelete={handleCardDelete}
+            isConfirmDeletePopup={isConfirmDeletePopup}
           />
           <EditAvatarPopup
             card={selectedCard}
@@ -327,11 +331,11 @@ function App() {
           <ImagePopup
             card={selectedCard}
             onClose={closeAllPopups}
-            isOpen={isImagePopupOpen} 
+            isOpen={isImagePopupOpen}
             setIsLoading={setIsLoading}
             isLoading={isLoading}
             showLoader={showLoader}
-            />
+          />
           <InfoTooltip
             isOpen={isInfoTooltipOpen}
             onClose={closeAllPopups}

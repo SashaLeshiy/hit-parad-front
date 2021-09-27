@@ -13,20 +13,27 @@ export const addCard = ({ link }) => {
     }
 }
 
-// function handleAddPlace({ name, link }) {
-//   api.setCard(name, link)
-//     .then((res) => {
-//       setCards([res, ...cards])
-//       closeAllPopups();
-//       setTextSubmit('Добавить');
-//     })
-//     .catch((err) => {
-//       closeAllPopups();
-//       setIsAuth(false);
-//       setInfoTooltipOpen(true);
-//       console.log(err);
-//       setTextSubmit('Добавить');
-//     });
+export const deleteCard = ({ id }) => {
+    return dispatch => {
+        api.deleteCard(id)
+      .then(() => {
+        dispatch(getCards((state) => state.filter((elem) => elem._id !== id)));
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    }
+}
+
+// function handleCardDelete({ id }) {
+//     api.deleteCard(id)
+//       .then(() => {
+//         dispatch(getCards((state) => state.filter((elem) => elem._id !== id)));
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//       })
+//   }
 
 export const getCards = () => {
     return dispatch => {

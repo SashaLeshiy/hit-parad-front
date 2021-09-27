@@ -1,15 +1,25 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm';
+import { useDispatch, useSelector } from "react-redux";
 
-function ConfirmDeletePopup({ isOpen, onClose, onCardDelete }) {
+import { deleteCard } from "../store/actions/cardActions";
+
+function ConfirmDeletePopup({ isOpen, onClose, onCardDelete, isConfirmDeletePopup}) {
+
+    const dispatch = useDispatch();
+    const id = localStorage.getItem('deleteCardId');
 
     function handleSubmit(event) {
         event.preventDefault();
-        // onCardDelete({ id: id });
+        dispatch(deleteCard({ 
+            id,
+         }));
+        onClose();
       }
 
     return (
         <PopupWithForm name='confirmDelete' title='Вы уверены?' submit='Да'
+            isConfirmDeletePopup={isConfirmDeletePopup}
             onCardDelete={onCardDelete}
             isOpen={isOpen}
             onClose={onClose}
