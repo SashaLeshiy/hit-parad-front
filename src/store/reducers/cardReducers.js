@@ -13,6 +13,11 @@ const reducer = (state = initialState, action) => {
         case actions.DELETE_CARD:
             return {...state, cards: state.cards.filter(card => card.id !== action.id) }
 
+        case actions.LIKE_CARD:
+            return {...state, cards: state.cards.map(card => 
+                card._id === action.card._id ? 
+                action.card : card
+                )}
         default:
             return state;
     }

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Card from '../components/Card';
 import Preloader from './Preloader';
 import { useSelector } from "react-redux";
-import ConfirmDeletePopup from './ConfirmDeletePopup';
+// import ConfirmDeletePopup from './ConfirmDeletePopup';
 // import { CurrentUserContext } from '../contexts/CurrentUserContext';
 // import { getCards } from "../store/actions/cardActions";
 
@@ -11,7 +11,7 @@ function Main({ onEditAvatar,
   onAddPlace,
   dataImage,
   openPopImage,
-  // cards,
+  cards,
   setCards,
   onCardLike,
   onCardListen,
@@ -24,7 +24,8 @@ function Main({ onEditAvatar,
   closeAllPopups
 }) {
 
-  const cards = useSelector((state) => state.cardReducer.cards);
+
+  // const cards = useSelector((state) => state.cardReducer.cards);
 
   if (cards) {
     cards.sort((a, b) => {

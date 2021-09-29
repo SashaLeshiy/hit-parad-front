@@ -19,6 +19,7 @@ import * as auth from '../utils/auth.js';
 import MobileMenu from './MobileMenu';
 import Error404 from './Error404';
 import { getCards, addCard } from "../../src/store/actions/cardActions";
+import { userInfo } from "../store/actions/userActions";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,7 +41,8 @@ function App() {
   const [textSubmit, setTextSubmit] = useState('Добавить');
   const [isLoading, setIsLoading] = useState(false);
   const [headlessPage, setHeadlessPage] = useState(false);
-
+  
+  const cards = useSelector((state) => state.cardReducer.cards);
 
   const handleEditAvatarClick = () => {
     setAvatarPopupOpen(true);
@@ -90,13 +92,14 @@ function App() {
         }
       })
       .then(() => {
-        api.getUserInfo()
-          .then((res) => {
-            setCurrentUser(res);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        dispatch(userInfo());
+        // api.getUserInfo()
+        //   .then((res) => {
+        //     setCurrentUser(res);
+        //   })
+        //   .catch((err) => {
+        //     console.log(err);
+        //   });
       })
       .catch((err) => {
         console.log(err);
@@ -160,18 +163,18 @@ function App() {
 
   // }
 
-  function handleCardLike({ id, likes }) {
-    const isLiked = likes.some(i => i === currentUser._id);
-    let likeMethod = '';
-    isLiked ? likeMethod = api.deleteLike(id) : likeMethod = api.putLike(id);
-    likeMethod
-      .then((newCard) => {
-        dispatch(getCards((state) => state.map((elem) => elem._id === id ? newCard : elem)));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+  // function handleCardLike({ id, likes }) {
+  //   const isLiked = likes.some(i => i === currentUser._id);
+  //   let likeMethod = '';
+  //   isLiked ? likeMethod = api.deleteLike(id) : likeMethod = api.putLike(id);
+  //   likeMethod
+  //     .then((newCard) => {
+  //       dispatch(getCards((state) => state.map((elem) => elem._id === id ? newCard : elem)));
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }
 
   function handleCardListen({ id }) {
     api.putListen(id)
@@ -248,6 +251,7 @@ function App() {
   function openMobileMenu() {
     isOpenMobileMenu ? setOpenMobileMenu(false) : setOpenMobileMenu(true);
   }
+
   return (
     <div className="page">
       <div className="page__container">
@@ -286,8 +290,8 @@ function App() {
                 dataImage={setSelectedCard}
                 openPopImage={handleCardClick}
                 // setCards={setCards}
-                // cards={cards}
-                onCardLike={handleCardLike}
+                cards={cards}
+                // onCardLike={handleCardLike}
                 onCardListen={handleCardListen}
                 // onCardDelete={handleCardDelete}
                 onConfirmDelete={handleDeleteCard}

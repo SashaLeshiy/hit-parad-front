@@ -1,6 +1,8 @@
 import React from 'react';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import { useDispatch, useSelector } from "react-redux";
 
+import { cardLike } from '../store/actions/cardActions';
 
 function Card({ id,
   link,
@@ -23,19 +25,27 @@ function Card({ id,
   closeAllPopups
 }) {
 
-  const userInfo = React.useContext(CurrentUserContext);
+  const dispatch = useDispatch();
+  // const user = useSelector((state) => console.log(state));
 
+  const userInfo = React.useContext(CurrentUserContext);
   const isOwn = ownerId === userInfo._id;
   const isLiked = likes.some(i => i === userInfo._id);
-
+  
   const cardDeleteButtonClassName = (`element__trash ${isOwn ? 'element__trash_visible' : ''}`);
   const cardLikeButtonClassName = (`element__like ${isLiked ? 'element__like_black' : ''}`);
 
   function handleLikeClick() {
-    onCardLike({
+    dispatch(cardLike({
       id: id,
-      likes: likes
-    })
+      likes: likes,
+      currentUserId: userInfo._id,
+    }))
+    // onCardLike({
+    //   id: id,
+    //   likes: likes,
+    //   currentUserId: userInfo._id,
+    // })
   }
 
   // function handleListenClick() {
@@ -72,7 +82,7 @@ function Card({ id,
     //   id: id,
     // });
   }
-  
+
 
   return (
     (<article className="element" >
