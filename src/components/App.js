@@ -44,14 +44,10 @@ function App() {
   const [headlessPage, setHeadlessPage] = useState(false);
 
   const cards = useSelector((state) => state.cardReducer.cards);
-  const user = useSelector((state) => state.userReducer.user);
-  
-  console.log('app', user); 
 
   function tokenCheck() {
     const token = localStorage.getItem('token');
     if (!token) {
-      console.log('!token');
       return;
     }
     dispatch(getUser(token));
@@ -82,11 +78,9 @@ function App() {
   }
 
   useEffect(() => {
-    console.log('useeff');
-    // getSongs();
     dispatch(getCards());
     tokenCheck();
-  }, [])
+  }, [dispatch])
 
   const handleEditAvatarClick = () => {
     setAvatarPopupOpen(true);

@@ -18,6 +18,7 @@ const reducer = (state = initialState, action) => {
                 card._id === action.card._id ? 
                 action.card : card
                 )}
+                
         default:
             return state;
     }

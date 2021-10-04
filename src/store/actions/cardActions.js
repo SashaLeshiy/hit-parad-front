@@ -19,6 +19,7 @@ export const deleteCard = ({ id }) => {
         api.deleteCard(id)
       .then(() => {
           dispatch({ type: actions.DELETE_CARD, id });
+          dispatch(getCards());
       })
       .catch((err) => {
         dispatch(console.log(err));
