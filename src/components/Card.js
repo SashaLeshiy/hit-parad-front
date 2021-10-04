@@ -26,11 +26,11 @@ function Card({ id,
 }) {
 
   const dispatch = useDispatch();
-  // const user = useSelector((state) => console.log(state));
-
-  const userInfo = React.useContext(CurrentUserContext);
-  const isOwn = ownerId === userInfo._id;
-  const isLiked = likes.some(i => i === userInfo._id);
+  // const user = useSelector((state) => state.userReducer.user);
+  const userId = JSON.parse(localStorage.getItem('userId'));
+  // const user = React.useContext(CurrentUserContext);
+  const isOwn = ownerId === userId;
+  const isLiked = likes.some(i => i === userId);
   
   const cardDeleteButtonClassName = (`element__trash ${isOwn ? 'element__trash_visible' : ''}`);
   const cardLikeButtonClassName = (`element__like ${isLiked ? 'element__like_black' : ''}`);
@@ -39,7 +39,7 @@ function Card({ id,
     dispatch(cardLike({
       id: id,
       likes: likes,
-      currentUserId: userInfo._id,
+      currentUserId: userId,
     }))
     // onCardLike({
     //   id: id,

@@ -19,7 +19,8 @@ import * as auth from '../utils/auth.js';
 import MobileMenu from './MobileMenu';
 import Error404 from './Error404';
 import { getCards, addCard } from "../../src/store/actions/cardActions";
-import { userInfo } from "../store/actions/userActions";
+import { userInfo, getUser } from "../store/actions/userActions";
+import Preloader from './Preloader';
 
 function App() {
   const dispatch = useDispatch();
@@ -41,8 +42,51 @@ function App() {
   const [textSubmit, setTextSubmit] = useState('Добавить');
   const [isLoading, setIsLoading] = useState(false);
   const [headlessPage, setHeadlessPage] = useState(false);
-  
+
   const cards = useSelector((state) => state.cardReducer.cards);
+  const user = useSelector((state) => state.userReducer.user);
+  
+  console.log('app', user); 
+
+  function tokenCheck() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.log('!token');
+      return;
+    }
+    dispatch(getUser(token));
+    
+    // auth.getContent(token)
+    //   .then((res) => {
+    //     if (res) {
+          // dispatch(getUser(res));
+          // dispatch(userInfo());
+          // dispatch(setEmail(user.email));
+          setLoggedIn(true);
+          history.push('/');
+      //   }
+      // })
+      // .then(() => {
+        dispatch(userInfo());
+        // api.getUserInfo()
+        //   .then((res) => {
+            // setCurrentUser(res);
+        //   })
+        //   .catch((err) => {
+        //     console.log(err);
+        //   });
+      // })
+      // .catch((err) => {
+      //   console.log(err);
+      // });
+  }
+
+  useEffect(() => {
+    console.log('useeff');
+    // getSongs();
+    dispatch(getCards());
+    tokenCheck();
+  }, [])
 
   const handleEditAvatarClick = () => {
     setAvatarPopupOpen(true);
@@ -78,40 +122,7 @@ function App() {
     setIsLoading(!isLoading);
   }
 
-  function tokenCheck() {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      return;
-    }
-    auth.getContent(token)
-      .then((res) => {
-        if (res) {
-          setEmail(res.email);
-          setLoggedIn(true);
-          history.push('/');
-        }
-      })
-      .then(() => {
-        dispatch(userInfo());
-        // api.getUserInfo()
-        //   .then((res) => {
-        //     setCurrentUser(res);
-        //   })
-        //   .catch((err) => {
-        //     console.log(err);
-        //   });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
-  useEffect(() => {
-    // getSongs();
-    dispatch(getCards());
-    tokenCheck();
-  }, [dispatch])
-
+  
   // function getSongs() {
   //   api.getInitialCards()
   //     .then((res) => {
@@ -257,7 +268,7 @@ function App() {
       <div className="page__container">
         <CurrentUserContext.Provider value={currentUser}>
           <MobileMenu loggedIn={loggedIn}
-            email={userEmail}
+            // email={user.email}
             signOut={signOut}
             loginPage={loginPage}
             setLoginPage={setLoginPage}
@@ -265,7 +276,7 @@ function App() {
             isOpenMobileMenu={isOpenMobileMenu}
           />
           <Header loggedIn={loggedIn}
-            email={userEmail}
+            // email={user.email}
             signOut={signOut}
             loginPage={loginPage}
             setLoginPage={setLoginPage}

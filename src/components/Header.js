@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from "react-redux";
 import logo from '../../src/images/logo_hitallica.png';
 import Navbar from './Navbar.js';
 
@@ -12,12 +13,16 @@ function Header({ loggedIn,
       isOpenMobileMenu,
       headlessPage
  }) {
+      
+      const user = useSelector((state) => state.userReducer.user);
+
       return (
             (<header className={`header section ${headlessPage ? "hidden" : ""}`}>
                   <a href="/" target="_self">
-                        <img src={logo} className="header__logo" alt="логотип Mesto Russia" />
+                        <img src={logo} className="header__logo" alt="логотип hit-parad" />
                   </a>
-                  <Navbar email={email}
+                  <Navbar
+                  //  email={user.email}
                         signOut={signOut}
                         loggedIn={loggedIn}
                         loginPage={loginPage}

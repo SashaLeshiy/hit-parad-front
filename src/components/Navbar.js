@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from "react-redux";
 
 function Navbar({ loggedIn, 
     email, 
@@ -9,6 +10,10 @@ function Navbar({ loggedIn,
     openMobileMenu, 
     isOpenMobileMenu }) {
 
+        // const user = React.useContext(CurrentUserContext);
+    // const user = useSelector((state) => state.userReducer.user);
+    // useSelector((state) => console.log('navbar state', state));
+        const userEmail = JSON.parse(localStorage.getItem('userEmail'));
     return (
         (<ul className="header__menu">
             {loggedIn ?
@@ -19,7 +24,7 @@ function Navbar({ loggedIn,
                             :
                             <button onClick={openMobileMenu} className="mobileMenu__close"></button>}
                     </li>
-                    <li className="header__mail">{email}</li>
+                    <li className="header__mail">{userEmail}</li>
                     <li><button onClick={signOut} className="header__button header__button_isLogin">Выйти</button></li>
                 </>
                 :
