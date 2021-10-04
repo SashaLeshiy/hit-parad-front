@@ -51,6 +51,7 @@ function App() {
       return;
     }
     dispatch(getUser(token));
+    dispatch(userInfo());
     
     // auth.getContent(token)
     //   .then((res) => {
@@ -63,7 +64,7 @@ function App() {
       //   }
       // })
       // .then(() => {
-        dispatch(userInfo());
+        // dispatch(userInfo());
         // api.getUserInfo()
         //   .then((res) => {
             // setCurrentUser(res);
@@ -129,27 +130,27 @@ function App() {
   // }
 
 
-  function handleUpdateUser({ name, about }) {
-    api.setUser(name, about)
-      .then((res) => {
-        setCurrentUser(res)
-        closeAllPopups();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+  // function handleUpdateUser({ name, about }) {
+  //   api.setUser(name, about)
+  //     .then((res) => {
+  //       setCurrentUser(res)
+  //       closeAllPopups();
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }
 
-  function handleUpdateAvatar({ avatar }) {
-    api.setAvatar(avatar)
-      .then((res) => {
-        setCurrentUser(res)
-        closeAllPopups();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+  // function handleUpdateAvatar({ avatar }) {
+  //   api.setAvatar(avatar)
+  //     .then((res) => {
+  //       setCurrentUser(res)
+  //       closeAllPopups();
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }
 
   // function handleAddPlace({ name, link }) {
   //   api.setCard(name, link)
@@ -325,7 +326,8 @@ function App() {
           <EditProfilePopup
             isOpen={isEditProfilePopupOpen}
             onClose={closeAllPopups}
-            onUpdateUser={handleUpdateUser} />
+            // onUpdateUser={handleUpdateUser} 
+            />
           <ConfirmDeletePopup
             isOpen={isConfirmDeletePopup}
             onClose={closeAllPopups}
@@ -336,7 +338,8 @@ function App() {
             card={selectedCard}
             isOpen={isEditAvatarPopupOpen}
             onClose={closeAllPopups}
-            onUpdateAvatar={handleUpdateAvatar} />
+            // onUpdateAvatar={handleUpdateAvatar}
+             />
           <ImagePopup
             card={selectedCard}
             onClose={closeAllPopups}

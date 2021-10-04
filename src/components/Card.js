@@ -26,9 +26,9 @@ function Card({ id,
 }) {
 
   const dispatch = useDispatch();
-  // const user = useSelector((state) => state.userReducer.user);
+  
+  const user = useSelector((state) => state.userReducer.user);
   const userId = JSON.parse(localStorage.getItem('userId'));
-  // const user = React.useContext(CurrentUserContext);
   const isOwn = ownerId === userId;
   const isLiked = likes.some(i => i === userId);
   
