@@ -62,7 +62,7 @@ function Card({ id,
   function pauseIsOver() {
     setPausePlay(false);
   }
-
+  
   function handleClick() {
     if(pausePlay) {
       return;
@@ -75,6 +75,7 @@ function Card({ id,
       id: id,
       frameSong: frameSong,
     });
+    if(loggedIn) {
     dispatch(cardListen({
       // link: link,
       // name: name,
@@ -83,6 +84,7 @@ function Card({ id,
     }))
     setPausePlay(true);
     setTimeout(pauseIsOver, 3000000);
+  }
   }
 
   function handleDeleteClick() {
