@@ -9,7 +9,7 @@ export const addCard = ({ link }) => {
                 dispatch({ type: actions.ADD_CARD, res });
             })
             .catch((err) => {
-                dispatch(console.log(err));
+                console.log(err);
             })
     }
 }
@@ -22,7 +22,7 @@ export const deleteCard = ({ id }) => {
                 dispatch(getCards());
             })
             .catch((err) => {
-                dispatch(console.log(err));
+                console.log(err);
             })
     }
 }
@@ -35,7 +35,7 @@ export const getCards = () => {
                 dispatch({ type: actions.GET_CARDS, cards: res })
             })
             .catch((err) => {
-                dispatch(console.log(err));
+                console.log(err);
             })
     }
 }
@@ -50,7 +50,7 @@ export const cardLike = ({ id, likes, currentUserId }) => {
                 dispatch({ type: actions.LIKE_CARD, card: newCard })
             })
             .catch((err) => {
-                dispatch(console.log(err));
+                console.log(err);
             })
     }
 }

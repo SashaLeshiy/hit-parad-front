@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { useDispatch, useSelector } from "react-redux";
 
@@ -24,6 +24,7 @@ function Card({ id,
   isConfirmDeletePopup,
   closeAllPopups
 }) {
+  const [pausePlay, setPausePlay] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -58,7 +59,14 @@ function Card({ id,
   //   })
   // }
 
+  function pauseIsOver() {
+    setPausePlay(false);
+  }
+
   function handleClick() {
+    if(pausePlay) {
+      return;
+    }
     // showLoader();
     openPic();
     onCardClick({
@@ -73,6 +81,8 @@ function Card({ id,
       id: id,
       // frameSong: frameSong,
     }))
+    setPausePlay(true);
+    setTimeout(pauseIsOver, 3000000);
   }
 
   function handleDeleteClick() {
