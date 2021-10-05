@@ -2,7 +2,7 @@ import React from 'react';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { useDispatch, useSelector } from "react-redux";
 
-import { cardLike } from '../store/actions/cardActions';
+import { cardLike, cardListen } from '../store/actions/cardActions';
 
 function Card({ id,
   link,
@@ -26,7 +26,7 @@ function Card({ id,
 }) {
 
   const dispatch = useDispatch();
-  
+
   const user = useSelector((state) => state.userReducer.user);
   const userId = JSON.parse(localStorage.getItem('userId'));
   const isOwn = ownerId === userId;
@@ -59,7 +59,7 @@ function Card({ id,
   // }
 
   function handleClick() {
-    showLoader();
+    // showLoader();
     openPic();
     onCardClick({
       link: link,
@@ -67,12 +67,12 @@ function Card({ id,
       id: id,
       frameSong: frameSong,
     });
-    onCardListen({
-      link: link,
-      name: name,
+    dispatch(cardListen({
+      // link: link,
+      // name: name,
       id: id,
-      frameSong: frameSong,
-    })
+      // frameSong: frameSong,
+    }))
   }
 
   function handleDeleteClick() {

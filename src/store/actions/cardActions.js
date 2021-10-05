@@ -17,13 +17,13 @@ export const addCard = ({ link }) => {
 export const deleteCard = ({ id }) => {
     return dispatch => {
         api.deleteCard(id)
-      .then(() => {
-          dispatch({ type: actions.DELETE_CARD, id });
-          dispatch(getCards());
-      })
-      .catch((err) => {
-        dispatch(console.log(err));
-      })
+            .then(() => {
+                dispatch({ type: actions.DELETE_CARD, id });
+                dispatch(getCards());
+            })
+            .catch((err) => {
+                dispatch(console.log(err));
+            })
     }
 }
 
@@ -46,14 +46,36 @@ export const cardLike = ({ id, likes, currentUserId }) => {
     isLiked ? likeMethod = api.deleteLike(id) : likeMethod = api.putLike(id);
     return dispatch => {
         likeMethod
-        .then((newCard) => {
-            dispatch({ type: actions.LIKE_CARD, card: newCard })
-        })
-        .catch((err) => {
-            dispatch(console.log(err));
-        })
+            .then((newCard) => {
+                dispatch({ type: actions.LIKE_CARD, card: newCard })
+            })
+            .catch((err) => {
+                dispatch(console.log(err));
+            })
     }
 }
+
+export const cardListen = ({ id }) => {
+    return dispatch => {
+        api.putListen(id)
+            .then((newCard) => {
+                dispatch({ type: actions.LISTEN_CARD, card: newCard })
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
+}
+
+// function handleCardListen({ id }) {
+//     api.putListen(id)
+//       .then((newCard) => {
+//         dispatch(getCards((state) => state.map((elem) => elem._id === id ? newCard : elem)));
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//       });
+//   }
 
 // function handleCardLike({ id, likes }) {
 //     const isLiked = likes.some(i => i === currentUser._id);

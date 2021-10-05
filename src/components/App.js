@@ -52,7 +52,7 @@ function App() {
     }
     dispatch(getUser(token));
     dispatch(userInfo());
-    
+
     // auth.getContent(token)
     //   .then((res) => {
     //     if (res) {
@@ -182,15 +182,15 @@ function App() {
   //     });
   // }
 
-  function handleCardListen({ id }) {
-    api.putListen(id)
-      .then((newCard) => {
-        dispatch(getCards((state) => state.map((elem) => elem._id === id ? newCard : elem)));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+  // function handleCardListen({ id }) {
+  //   api.putListen(id)
+  //     .then((newCard) => {
+  //       dispatch(getCards((state) => state.map((elem) => elem._id === id ? newCard : elem)));
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }
 
   // function handleCardDelete({ id }) {
   //   api.deleteCard(id)
@@ -298,7 +298,7 @@ function App() {
                 // setCards={setCards}
                 cards={cards}
                 // onCardLike={handleCardLike}
-                onCardListen={handleCardListen}
+                // onCardListen={handleCardListen}
                 // onCardDelete={handleCardDelete}
                 onConfirmDelete={handleDeleteCard}
                 showLoader={showLoader}
