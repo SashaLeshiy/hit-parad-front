@@ -33,7 +33,7 @@ function AddPlacePopup({ isOpen,
             link: cardLink,
         }))
         closeAllPopups();
-        setTextSubmit('Добавить');
+        // setTextSubmit('Добавить');
         setCardLink('');
     }
 

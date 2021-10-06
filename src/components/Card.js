@@ -67,7 +67,7 @@ function Card({ id,
     if(pausePlay) {
       return;
     }
-    showLoader();
+    // showLoader();
     openPic();
     onCardClick({
       link: link,

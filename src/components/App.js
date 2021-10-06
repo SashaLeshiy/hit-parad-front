@@ -92,6 +92,7 @@ function App() {
   }
 
   const handleAddPlaceClick = () => {
+    setTextSubmit('Добавить');
     setPlacePopupOpen(true);
   }
 
