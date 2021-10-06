@@ -4,9 +4,9 @@ import React from 'react';
 function ImagePopup({ card, onClose, isOpen, setIsLoading, isLoading, showLoader }) {
     return (
         <>
-
             (<div className={`popup popupImg  ${isOpen ? "popup_opened" : ""}`} id="bigImage">
                 <div className="popup__imageContainer">
+                    <p className="popup__imageLoading">Загружаем...</p>
                     {/* <img src={card.link}
                     alt={card.name} className="popup__image" /> */}
                     <button type="button" onClick={onClose} className="popup__close"></button>

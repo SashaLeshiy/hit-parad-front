@@ -62,12 +62,12 @@ function Card({ id,
   function pauseIsOver() {
     setPausePlay(false);
   }
-  
+
   function handleClick() {
     if(pausePlay) {
       return;
     }
-    // showLoader();
+    showLoader();
     openPic();
     onCardClick({
       link: link,
