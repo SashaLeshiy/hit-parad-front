@@ -59,7 +59,6 @@ setCard(link) {
     'Content-Type': 'application/json',
   },
   body: JSON.stringify({
-    // name: cardName,
     link: link
   }),
   })
@@ -130,10 +129,8 @@ setAvatar(link) {
 }
 
 _checkResponse(res) {
-  if (res.ok) {
-      return res.json();
-  }
-  return Promise.reject(`Ошибка ${res.status}`);
+  return res.ok ? res.json() :
+    Promise.reject(new Error(`Ошибка ${res.status}: ${res.statusText}`));
 }
 
 }

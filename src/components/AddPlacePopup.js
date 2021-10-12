@@ -29,11 +29,9 @@ function AddPlacePopup({ isOpen,
         event.preventDefault();
         setTextSubmit('Добавляем...');
         dispatch(addCard({
-            // name: cardName, onAddPlace
             link: cardLink,
         }))
         closeAllPopups();
-        // setTextSubmit('Добавить');
         setCardLink('');
     }
 

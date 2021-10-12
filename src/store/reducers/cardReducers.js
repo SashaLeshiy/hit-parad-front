@@ -1,6 +1,9 @@
 import * as actions from "../actions/index";
 
-const initialState = { cards: JSON.parse(localStorage.getItem('songs')) };
+const initialState = { 
+    cards: JSON.parse(localStorage.getItem('songs')),
+    cardError: false
+};
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -9,6 +12,9 @@ const reducer = (state = initialState, action) => {
 
         case actions.ADD_CARD:
             return { ...state, cards: [action.res, ...state.cards] }
+
+        case actions.ADD_CARD_FAILURE:
+            return { ...state, cardError: action.cardError}
 
         case actions.DELETE_CARD:
             return { ...state, cards: state.cards.filter(card => card.id !== action.id) }

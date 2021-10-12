@@ -6,3 +6,4 @@ export const LIKE_CARD = "LIKE_CARD";
 export const USER_INFO = "USER_INFO";
 export const GET_USER = "GET_USER";
 export const LISTEN_CARD = "LISTEN_CARD";
+export const ADD_CARD_FAILURE = "ADD_CARD_FAILURE"

@@ -9,10 +9,16 @@ export const addCard = ({ link }) => {
                 dispatch({ type: actions.ADD_CARD, res });
             })
             .catch((err) => {
-                console.log(err);
+                dispatch({ type: actions.ADD_CARD_FAILURE, cardError: true})
             })
     }
 }
+
+// export const addCardFailure = (error) => {
+//     return dispatch => {
+//     dispatch({ type: actions.ADD_CARD_FAILURE, error})
+//     }
+// }
 
 export const deleteCard = ({ id }) => {
     return dispatch => {
@@ -67,26 +73,4 @@ export const cardListen = ({ id }) => {
     }
 }
 
-// function handleCardListen({ id }) {
-//     api.putListen(id)
-//       .then((newCard) => {
-//         dispatch(getCards((state) => state.map((elem) => elem._id === id ? newCard : elem)));
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//       });
-//   }
-
-// function handleCardLike({ id, likes }) {
-//     const isLiked = likes.some(i => i === currentUser._id);
-//     let likeMethod = '';
-//     isLiked ? likeMethod = api.deleteLike(id) : likeMethod = api.putLike(id);
-//     likeMethod
-//       .then((newCard) => {
-//         dispatch(getCards((state) => state.map((elem) => elem._id === id ? newCard : elem)));
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//       });
-//   }
 

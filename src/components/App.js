@@ -20,6 +20,7 @@ import MobileMenu from './MobileMenu';
 import Error404 from './Error404';
 import { getCards, addCard } from "../../src/store/actions/cardActions";
 import { userInfo, getUser } from "../store/actions/userActions";
+import * as actions from "../store/actions/index";
 import Preloader from './Preloader';
 
 function App() {
@@ -44,6 +45,11 @@ function App() {
   const [headlessPage, setHeadlessPage] = useState(false);
 
   const cards = useSelector((state) => state.cardReducer.cards);
+  // const addCardError = useSelector((state) => state.cardReducer.cardError);
+
+  // if(addCardError) {
+  //   setInfoTooltipOpen(true);
+  // }
 
   function tokenCheck() {
     const token = localStorage.getItem('token');
@@ -112,6 +118,7 @@ function App() {
     setInfoTooltipOpen(false);
     setConfirmDeletePopup(false);
     setIsAuth(true);
+    dispatch({ type: actions.ADD_CARD_FAILURE, cardError: false})
   }
 
   function showLoader() {
