@@ -138,7 +138,7 @@ _checkResponse(res) {
 const token = localStorage.getItem('token');
 
 const config = {
-  url: 'http://localhost:3000',
+  url: 'http://185.125.218.171:3000',
   headers: {
     authorization: 'Bearer ' + token,
     'Content-Type': 'application/json',

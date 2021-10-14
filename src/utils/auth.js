@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://localhost:3000';
+export const BASE_URL = 'http://185.125.218.171:3000';
 
 const checkResponse = (response) => {
   return response.ok ? response.json() :

@@ -14,11 +14,6 @@ export const addCard = ({ link }) => {
     }
 }
 
-// export const addCardFailure = (error) => {
-//     return dispatch => {
-//     dispatch({ type: actions.ADD_CARD_FAILURE, error})
-//     }
-// }
 
 export const deleteCard = ({ id }) => {
     return dispatch => {
