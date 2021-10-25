@@ -138,7 +138,7 @@ _checkResponse(res) {
 const token = localStorage.getItem('token');
 
 const config = {
-  url: 'http://hitapi.roooar.ru',
+  url: 'https://hitapi.roooar.ru',
   headers: {
     authorization: 'Bearer ' + token,
     'Content-Type': 'application/json',
