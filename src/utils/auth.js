@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://hitapi.roooar.ru';
+export const BASE_URL = 'https://hitapi.roooar.ru';
 
 const checkResponse = (response) => {
   return response.ok ? response.json() :
