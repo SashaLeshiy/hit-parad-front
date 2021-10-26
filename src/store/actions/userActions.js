@@ -9,7 +9,7 @@ export const userInfo = () => {
                 dispatch({ type: actions.USER_INFO, user: res })
             })
             .catch((err) => {
-                dispatch(console.log(err));
+                console.log(err);
             })
     }
 }
@@ -23,7 +23,7 @@ export const getUser = (token) => {
                 dispatch({ type: actions.GET_USER, user: res })
             })
             .catch((err) => {
-                dispatch(console.log(err));
+                console.log(err);
             })
     }
 }
