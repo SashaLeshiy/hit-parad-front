@@ -10,3 +10,9 @@
   padding-top: 7px;
   color: #ffffff;
 }
+
+@media screen and (max-width: 428px) {
+  .element__heading {
+    max-width: 100%;
+  }
+}
