@@ -10,6 +10,6 @@
 @media screen and (max-width: 428px) {
   .element {
     max-width: inherit;
-    max-height: inherit;
+    max-height: 100%;
   }
 }
