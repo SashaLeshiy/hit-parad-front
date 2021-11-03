@@ -1,5 +1,7 @@
-import React from 'react';
-import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+
+import { cardLike, cardListen } from '../store/actions/cardActions';
 
 function Card({ id,
   link,
@@ -9,43 +11,39 @@ function Card({ id,
   ownerId,
   onCardClick,
   openPic,
-  openSong,
-  onCardLike,
-  onCardListen,
-  onCardDelete,
   onConfirmDelete,
   loggedIn,
   rating,
-  showLoader
 }) {
+  const [pausePlay, setPausePlay] = useState(false);
 
-  const userInfo = React.useContext(CurrentUserContext);
+  const dispatch = useDispatch();
 
-  const isOwn = ownerId === userInfo._id;
-  const isLiked = likes.some(i => i === userInfo._id);
+  const user = useSelector((state) => state.userReducer.user);
 
+  const userId = JSON.parse(localStorage.getItem('userId'));
+  const isOwn = ownerId === userId;
+  const isLiked = likes.some(i => i === userId);
+  
   const cardDeleteButtonClassName = (`element__trash ${isOwn ? 'element__trash_visible' : ''}`);
   const cardLikeButtonClassName = (`element__like ${isLiked ? 'element__like_black' : ''}`);
 
   function handleLikeClick() {
-    onCardLike({
+    dispatch(cardLike({
       id: id,
-      likes: likes
-    })
+      likes: likes,
+      currentUserId: userId,
+    }))
   }
 
-  // function handleListenClick() {
-  //   openSong();
-  //   onCardListen({
-  //     link: link,
-  //     name: name,
-  //     id: id,
-  //     frameSong: frameSong,
-  //   })
-  // }
+  function pauseIsOver() {
+    setPausePlay(false);
+  }
 
   function handleClick() {
-    showLoader();
+    if(pausePlay) {
+      return;
+    }
     openPic();
     onCardClick({
       link: link,
@@ -53,19 +51,20 @@ function Card({ id,
       id: id,
       frameSong: frameSong,
     });
-    onCardListen({
-      link: link,
-      name: name,
+    if(loggedIn) {
+    dispatch(cardListen({
       id: id,
-      frameSong: frameSong,
-    })
+    }))
+    setPausePlay(true);
+    setTimeout(pauseIsOver, 3000000);
+  }
   }
 
   function handleDeleteClick() {
-    onCardDelete({
-      id: id,
-    });
+    localStorage.setItem('deleteCardId', id);
+    onConfirmDelete({ id: id, });
   }
+
 
   return (
     (<article className="element" >
@@ -79,18 +78,17 @@ function Card({ id,
           {loggedIn ?
             <div className="element__buttons">
               <button type="button" onClick={handleLikeClick} className={cardLikeButtonClassName}></button>
-              {/* <button type="button" onClick={handleListenClick} className="element__listen"></button> */}
             </div>
             :
             <div className="element__buttons">
               <button type="button" className="element__like_unactive" disabled></button>
-              {/* <button type="button" className="element__listen_unactive" disabled></button> */}
             </div>
           }
           <p className="element__likeCount">{rating}</p>
         </div>
       </div>
-    </article>)
+    </article>
+    )
   );
 
 }

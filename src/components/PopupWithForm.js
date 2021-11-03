@@ -8,12 +8,14 @@ function PopupWithForm({
   submit,
   nameForm,
   classNameForm,
+  isConfirmDeletePopup,
   idForm,
   children,
   onSubmit }) {
+
   return (
     (<div className={`popup ${isOpen ? "popup_opened" : ""}`} id={`#${name}`}>
-      <div className="popup__container" >
+      <div className={`popup__container ${isConfirmDeletePopup ? "confirmPopup" : ""}`} id={`#${name}`}>
         <button type="button" onClick={onClose} className="popup__close"></button>
         <h3 className="popup__heading">{title}</h3>
         <form name={nameForm} className={classNameForm} id={idForm} onSubmit={onSubmit} >

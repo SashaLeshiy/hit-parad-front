@@ -1,14 +1,15 @@
 import React from 'react';
 
-function Navbar({ loggedIn, 
-    email, 
-    signOut, 
-    loginPage, 
+function Navbar({ loggedIn,
+    email,
+    signOut,
+    loginPage,
     onAddPlace,
-    linkTo, 
-    openMobileMenu, 
+    linkTo,
+    openMobileMenu,
     isOpenMobileMenu }) {
 
+    const userEmail = JSON.parse(localStorage.getItem('userEmail'));
     return (
         (<ul className="header__menu">
             {loggedIn ?
@@ -19,7 +20,7 @@ function Navbar({ loggedIn,
                             :
                             <button onClick={openMobileMenu} className="mobileMenu__close"></button>}
                     </li>
-                    <li className="header__mail">{email}</li>
+                    <li className="header__mail">{userEmail}</li>
                     <li><button onClick={signOut} className="header__button header__button_isLogin">Выйти</button></li>
                 </>
                 :

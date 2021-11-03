@@ -32,7 +32,7 @@ function Login({ onLogin }) {
                     value={userData.password}
                     placeholder="Пароль"
                     className="login__input login__input_password"
-                    minLength="6" required />
+                    minLength="4" required />
                 <button type="submit" className="login__save" >Войти</button>
             </form>
         </div>

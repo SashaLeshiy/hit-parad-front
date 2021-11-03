@@ -6,3 +6,10 @@
   overflow: hidden;
   position: relative;
 }
+
+@media screen and (max-width: 428px) {
+  .element {
+    max-width: inherit;
+    max-height: 100%;
+  }
+}

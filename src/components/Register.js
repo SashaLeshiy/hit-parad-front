@@ -40,7 +40,7 @@ function Register({ onRegister, setLoginPage }) {
                     onChange={handleChange}
                     value={registerData.password}
                     placeholder="Пароль"
-                    className="login__input login__input_password" required />
+                    className="login__input login__input_password" minLength="4" required />
                 <button type="submit" className="login__save" >Зарегистрироваться</button>
             </form>
             <p className="login__logged">Уже зарегистрированы?

@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
+import { useDispatch } from "react-redux";
 import PopupWithForm from './PopupWithForm';
-// import Preloader from './Preloader';
 
-function AddPlacePopup({ isOpen, onClose, onAddPlace, setTextSubmit, textSubmit }) {
+import { addCard } from "../store/actions/cardActions"
 
-    // const [cardName, setCardName] = useState('');
+function AddPlacePopup({ isOpen,
+    onClose,
+    onAddPlace,
+    setTextSubmit,
+    textSubmit,
+    closeAllPopups
+}) {
+
     const [cardLink, setCardLink] = useState('');
-    
-    // function handleChangeCardName(event) {
-    //     setCardName(event.target.value)
-    // }
+    const dispatch = useDispatch();
 
     function handleChangeCardLink(event) {
         setCardLink(event.target.value)
@@ -18,12 +22,11 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace, setTextSubmit, textSubmit 
     function handleSubmit(event) {
         event.preventDefault();
         setTextSubmit('Добавляем...');
-        onAddPlace({
-            // name: cardName,
+        dispatch(addCard({
             link: cardLink,
-        })
+        }))
+        closeAllPopups();
         setCardLink('');
-        // setCardName('');
     }
 
     return (
@@ -35,21 +38,13 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace, setTextSubmit, textSubmit 
             nameForm='addCard'
             classNameForm='input input_card'
             idForm='addForm'>
-            {/* <input type="text"
-                name="nameElement"
-                id="nameElement"
-                value={cardName}
-                onChange={handleChangeCardName}
-                placeholder="Название"
-                className="input__text input__text_text_element"
-                minLength="2" maxLength="30" required /> */}
             <span className="input__text-error nameElement-error" ></span>
             <input type="url"
                 name="linkElement"
                 id="linkElement"
                 value={cardLink}
                 onChange={handleChangeCardLink}
-                placeholder="Ссылка на Яндекс.Музыка"
+                placeholder="Ссылка на трэк с Яндекс.Музыка"
                 className="input__text input__text_text_link" required />
             <span className="input__text-error linkElement-error" > </span>
         </PopupWithForm>

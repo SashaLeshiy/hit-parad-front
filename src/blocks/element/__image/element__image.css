@@ -5,3 +5,10 @@
   object-fit: cover;
   object-position: center;
 }
+
+@media screen and (max-width: 428px) {
+  .element__image {
+    width: 100%;
+    height: auto;
+  }
+}

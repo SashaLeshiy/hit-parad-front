@@ -1,37 +1,26 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Card from '../components/Card';
 import Preloader from './Preloader';
-// import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
-function Main({ onEditAvatar,
-  onEditProfile,
+function Main({ 
   onAddPlace,
   dataImage,
   openPopImage,
   cards,
-  setCards,
-  onCardLike,
-  onCardListen,
-  onCardDelete,
   onConfirmDelete,
   loggedIn,
-  showLoader
 }) {
-  cards.sort((a,b) => {
-    return b.rating - a.rating;
-  })
-  // const userInfo = React.useContext(CurrentUserContext);
+
+
+
+  if (cards) {
+    cards.sort((a, b) => {
+      return b.rating - a.rating;
+    })
+  }
   return (
     (<main className="content section">
       <section className="profile">
-        {/* <div className="profile__image" style={{ backgroundImage: `url(${userInfo.avatar})` }} >
-          <div onClick={onEditAvatar} className="profile__imageEdit"></div>
-        </div>
-        <div className="profile__info">
-          <h1 className="profile__heading">{userInfo.name}</h1>
-          <button type="button" onClick={onEditProfile} className="profile__button-edit"></button>
-          <p className="profile__subheading">{userInfo.about}</p>
-        </div> */}
         {loggedIn ?
           <button type="button" onClick={onAddPlace} className="profile__button-add">&#10010; Добавить</button>
           :
@@ -39,29 +28,27 @@ function Main({ onEditAvatar,
         }
       </section>
       <section className="elements">
-        {(cards.map(card => (
-          <Card key={card._id}
-            loggedIn={loggedIn}
-            id={card._id}
-            rating={card.rating}
-            name={card.title}
-            frameSong={card.frameSong}
-            link={card.image}
-            likes={card.likes}
-            ownerId={card.owner}
-            onCardClick={dataImage}
-            openSong={onEditAvatar}
-            openPic={openPopImage}
-            onCardLike={onCardLike}
-            onCardListen={onCardListen}
-            onCardDelete={onCardDelete}
-            onConfirmDelete={onConfirmDelete}
-            showLoader={showLoader}
-          />
-        )))}
-      {/* <Preloader/> */}
+        {cards ?
+          (cards.map(card => (
+            <Card key={card._id}
+              loggedIn={loggedIn}
+              id={card._id}
+              rating={card.rating}
+              name={card.title}
+              frameSong={card.frameSong}
+              link={card.image}
+              likes={card.likes}
+              ownerId={card.owner}
+              onCardClick={dataImage}
+              openPic={openPopImage}
+              onConfirmDelete={onConfirmDelete}
+            />
+          )))
+          : <Preloader />
+        }
       </section>
-    </main>)
+    </main>
+    )
   );
 }
 

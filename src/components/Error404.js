@@ -1,7 +1,6 @@
 import React from 'react';
 
-function Error404({ linkToBack, setHeadlessPage }) {
-      setHeadlessPage(true);
+function Error404({ linkToBack }) {
       return (
             (<section className="error404">
                   <div className="error404__container">

@@ -4,6 +4,8 @@
     width: 80px;
     height: 80px;
     align-self: center;
+    justify-self: center;
+    grid-column: 1/5;
   }
   .lds-ellipsis div {
     position: absolute;
