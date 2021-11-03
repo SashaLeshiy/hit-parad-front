@@ -1,14 +1,11 @@
 import React from 'react';
-// import Preloader from './Preloader';
 
-function ImagePopup({ card, onClose, isOpen, setIsLoading, isLoading, showLoader }) {
+function ImagePopup({ card, onClose, isOpen, }) {
     return (
         <>
             (<div className={`popup popupImg  ${isOpen ? "popup_opened" : ""}`} id="bigImage">
                 <div className="popup__imageContainer">
                     <p className="popup__imageLoading">Загружаем...</p>
-                    {/* <img src={card.link}
-                    alt={card.name} className="popup__image" /> */}
                     <button type="button" onClick={onClose} className="popup__close"></button>
                     <div className="popup__frame">
                         <iframe frameBorder="0" className="popup__imageFrame" title="yandexframe"

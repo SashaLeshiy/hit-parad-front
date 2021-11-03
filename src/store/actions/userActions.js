@@ -27,14 +27,3 @@ export const getUser = (token) => {
             })
     }
 }
-
-
-// auth.getContent(token)
-//       .then((res) => {
-//         console.log(res);
-//         if (res) {
-//           setEmail(res.email);
-//           setLoggedIn(true);
-//           history.push('/');
-//         }
-//       })

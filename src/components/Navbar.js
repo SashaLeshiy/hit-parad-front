@@ -1,19 +1,15 @@
 import React from 'react';
-import { useSelector } from "react-redux";
 
-function Navbar({ loggedIn, 
-    email, 
-    signOut, 
-    loginPage, 
+function Navbar({ loggedIn,
+    email,
+    signOut,
+    loginPage,
     onAddPlace,
-    linkTo, 
-    openMobileMenu, 
+    linkTo,
+    openMobileMenu,
     isOpenMobileMenu }) {
 
-        // const user = React.useContext(CurrentUserContext);
-    // const user = useSelector((state) => state.userReducer.user);
-    // useSelector((state) => console.log('navbar state', state));
-        const userEmail = JSON.parse(localStorage.getItem('userEmail'));
+    const userEmail = JSON.parse(localStorage.getItem('userEmail'));
     return (
         (<ul className="header__menu">
             {loggedIn ?

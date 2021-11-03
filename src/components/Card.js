@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { useDispatch, useSelector } from "react-redux";
 
 import { cardLike, cardListen } from '../store/actions/cardActions';
@@ -12,23 +11,16 @@ function Card({ id,
   ownerId,
   onCardClick,
   openPic,
-  openSong,
-  onCardLike,
-  onCardListen,
-  onCardDelete,
   onConfirmDelete,
   loggedIn,
   rating,
-  showLoader,
-  setConfirmDeletePopup,
-  isConfirmDeletePopup,
-  closeAllPopups
 }) {
   const [pausePlay, setPausePlay] = useState(false);
 
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.userReducer.user);
+
   const userId = JSON.parse(localStorage.getItem('userId'));
   const isOwn = ownerId === userId;
   const isLiked = likes.some(i => i === userId);
@@ -42,22 +34,7 @@ function Card({ id,
       likes: likes,
       currentUserId: userId,
     }))
-    // onCardLike({
-    //   id: id,
-    //   likes: likes,
-    //   currentUserId: userInfo._id,
-    // })
   }
-
-  // function handleListenClick() {
-  //   openSong();
-  //   onCardListen({
-  //     link: link,
-  //     name: name,
-  //     id: id,
-  //     frameSong: frameSong,
-  //   })
-  // }
 
   function pauseIsOver() {
     setPausePlay(false);
@@ -67,7 +44,6 @@ function Card({ id,
     if(pausePlay) {
       return;
     }
-    // showLoader();
     openPic();
     onCardClick({
       link: link,
@@ -77,10 +53,7 @@ function Card({ id,
     });
     if(loggedIn) {
     dispatch(cardListen({
-      // link: link,
-      // name: name,
       id: id,
-      // frameSong: frameSong,
     }))
     setPausePlay(true);
     setTimeout(pauseIsOver, 3000000);
@@ -90,9 +63,6 @@ function Card({ id,
   function handleDeleteClick() {
     localStorage.setItem('deleteCardId', id);
     onConfirmDelete({ id: id, });
-    // onCardDelete({
-    //   id: id,
-    // });
   }
 
 
@@ -108,12 +78,10 @@ function Card({ id,
           {loggedIn ?
             <div className="element__buttons">
               <button type="button" onClick={handleLikeClick} className={cardLikeButtonClassName}></button>
-              {/* <button type="button" onClick={handleListenClick} className="element__listen"></button> */}
             </div>
             :
             <div className="element__buttons">
               <button type="button" className="element__like_unactive" disabled></button>
-              {/* <button type="button" className="element__listen_unactive" disabled></button> */}
             </div>
           }
           <p className="element__likeCount">{rating}</p>

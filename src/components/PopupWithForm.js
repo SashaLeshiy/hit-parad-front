@@ -12,6 +12,7 @@ function PopupWithForm({
   idForm,
   children,
   onSubmit }) {
+
   return (
     (<div className={`popup ${isOpen ? "popup_opened" : ""}`} id={`#${name}`}>
       <div className={`popup__container ${isConfirmDeletePopup ? "confirmPopup" : ""}`} id={`#${name}`}>
