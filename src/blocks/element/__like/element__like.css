@@ -5,7 +5,7 @@
   background-image: url('../../../images/horn_dislike.png');
   background-color: inherit;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 21px 18px;
   border: 0;
   transition: 0.5s linear;
   outline: none;
@@ -19,7 +19,7 @@
 .element__like:active {
   background: url('../../../images/horn_like.png');
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 21px 18px;
   opacity: 1;
   border: 0;
   outline: none;
