@@ -26,6 +26,7 @@
 @import url('../src/blocks/elements/__extraStyle/elements__extraStyle.css');
 @import url('../src/blocks/element/element.css');
 @import url('../src/blocks/element/__image/element__image.css');
+@import url('../src/blocks/element/__buttons/element__buttons.css');
 @import url('../src/blocks/element/__text/element__text.css');
 @import url('../src/blocks/element/__heading/element__heading.css');
 @import url('../src/blocks/element/__like/element__like.css');
