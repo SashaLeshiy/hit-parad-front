@@ -2,7 +2,7 @@
   width: 21px;
   height: 18px;
   margin-top: 3px;
-  background-image: url('../../../images/white_heart.png');
+  background-image: url('../../../images/horn_dislike.png');
   background-color: inherit;
   background-repeat: no-repeat;
   background-size: cover;
@@ -17,7 +17,7 @@
 }
 
 .element__like:active {
-  background: url('../../../images/white_red_heart.png');
+  background: url('../../../images/horn_like.png');
   background-repeat: no-repeat;
   background-size: cover;
   opacity: 1;
