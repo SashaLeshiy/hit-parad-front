@@ -15,7 +15,6 @@ function Card({ id,
   loggedIn,
   rating,
 }) {
-  const [pausePlay, setPausePlay] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -36,14 +35,7 @@ function Card({ id,
     }))
   }
 
-  function pauseIsOver() {
-    setPausePlay(false);
-  }
-
   function handleClick() {
-    if(pausePlay) {
-      return;
-    }
     openPic();
     onCardClick({
       link: link,
@@ -55,8 +47,6 @@ function Card({ id,
     dispatch(cardListen({
       id: id,
     }))
-    setPausePlay(true);
-    setTimeout(pauseIsOver, 3000000);
   }
   }
 

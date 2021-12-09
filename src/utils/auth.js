@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://hitapi.roooar.ru';
+export const BASE_URL = 'http://localhost:3000';
 
 const checkResponse = (response) => {
   return response.ok ? response.json() :
