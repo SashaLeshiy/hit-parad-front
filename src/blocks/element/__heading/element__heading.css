@@ -2,13 +2,14 @@
   margin: 0;
   font-weight: 200;
   font-size: 12px;
-  line-height: 29px;
+  line-height: 1.2;
   max-width: 190px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   padding-top: 7px;
   color: #ffffff;
+  font-style: italic;
 }
 
 @media screen and (max-width: 428px) {

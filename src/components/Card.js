@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
 import { cardLike, cardListen } from '../store/actions/cardActions';
@@ -6,6 +6,7 @@ import { cardLike, cardListen } from '../store/actions/cardActions';
 function Card({ id,
   link,
   name,
+  artist,
   frameSong,
   likes,
   ownerId,
@@ -13,7 +14,7 @@ function Card({ id,
   openPic,
   onConfirmDelete,
   loggedIn,
-  rating,
+  rating, card,
 }) {
 
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ function Card({ id,
     onCardClick({
       link: link,
       name: name,
+      artist: artist,
       id: id,
       frameSong: frameSong,
     });
@@ -59,24 +61,25 @@ function Card({ id,
   return (
     (<article className="element" >
       <a href="##" target="_self">
-        <img src={link} alt={name} onClick={handleClick} className="element__image" />
+        <img src={link} alt={name} className="element__image" onClick={handleClick}/>
       </a>
       <button type="button" className={cardDeleteButtonClassName} onClick={handleDeleteClick} ></button>
-      <div className="element__text">
-        <h2 className="element__heading">{name}</h2>
-        <div className="element__likes">
-          {loggedIn ?
-            <div className="element__buttons">
-              <button type="button" onClick={handleLikeClick} className={cardLikeButtonClassName}></button>
-            </div>
-            :
-            <div className="element__buttons">
-              <button type="button" className="element__like_unactive" disabled></button>
-            </div>
-          }
-          <p className="element__likeCount">{rating}</p>
+                {loggedIn ?
+                    <div className="element__buttons">
+                        <button type="button" onClick={handleLikeClick} className={cardLikeButtonClassName}></button>
+                    </div>
+                    :
+                    <div className="element__buttons">
+                        <button type="button" className="element__like_unactive" disabled></button>
+                    </div>
+                }
+                <div className="element__likeCount">
+                    <p className="element__rating">{rating}</p>
+                </div>
+        <div className="element__text">
+          <h3 className="element__heading">{name}</h3>
+          <h2 className="element__artist">{artist} </h2>
         </div>
-      </div>
     </article>
     )
   );

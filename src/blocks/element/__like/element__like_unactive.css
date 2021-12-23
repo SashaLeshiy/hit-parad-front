@@ -1,7 +1,8 @@
 .element__like_unactive {
     width: 21px;
     height: 18px;
-    margin-top: 3px;
+    margin-top: 11px;
+    margin-left: 9px;
     background-image: url('../../../images/horn_dislike.png');
     background-color: inherit;
     background-repeat: no-repeat;

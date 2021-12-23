@@ -175,6 +175,7 @@ function App() {
               openPopImage={handleCardClick}
               cards={cards}
               onConfirmDelete={handleDeleteCard}
+              card={selectedCard}
             />
           </Route>
         </Switch>

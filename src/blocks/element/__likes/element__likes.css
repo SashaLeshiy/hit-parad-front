@@ -1,7 +1,16 @@
 .element__likes {
-    display: flex;
-    /* flex-direction: column; */
-    justify-content: space-between;
-    margin-top: -3px;
-    margin-right: 8px;
+    display: grid;
+    grid-template-columns: 80px 90px;
+    position: absolute;
+    top: 146px;
+    left: 15px;
+}
+
+@media screen and (max-width: 428px) {
+    .element__likes {
+        grid-template-columns: 145px 138px;
+        position: absolute;
+        top: 260px;
+        left: 28px;
+    }
 }

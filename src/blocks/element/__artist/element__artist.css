@@ -1,0 +1,17 @@
+.element__artist {
+    margin: 0;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 29px;
+    max-width: 190px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #ffffff;
+}
+
+@media screen and (max-width: 428px) {
+    .element__artist {
+        max-width: 100%;
+    }
+}

@@ -1,5 +1,4 @@
 import React from 'react';
-// import { useSelector } from "react-redux";
 
 function MobileMenu({ loggedIn, email, signOut, isOpenMobileMenu }) {
 

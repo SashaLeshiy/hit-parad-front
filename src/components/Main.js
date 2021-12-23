@@ -31,10 +31,12 @@ function Main({
         {cards ?
           (cards.map(card => (
             <Card key={card._id}
+                  card={card}
               loggedIn={loggedIn}
               id={card._id}
               rating={card.rating}
               name={card.title}
+              artist={card.artist}
               frameSong={card.frameSong}
               link={card.image}
               likes={card.likes}
