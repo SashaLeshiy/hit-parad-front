@@ -35,7 +35,7 @@ function Main({
               className="profile__button-add_unactive"
               disabled
             >
-              &#10010; ДОБАВИТЬ
+              &#10010;&nbsp;ДОБАВИТЬ
             </button>
             <div onClick={onQuestionOver} className="profile__question">
               ?
