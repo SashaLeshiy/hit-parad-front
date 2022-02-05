@@ -12,6 +12,7 @@ export const userInfo = () => {
                 console.log(err);
             })
     }
+    
 }
 
 export const getUser = (token) => {

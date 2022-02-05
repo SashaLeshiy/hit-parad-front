@@ -1,8 +1,9 @@
-import React from 'react';
-import Card from '../components/Card';
-import Preloader from './Preloader';
+import React from "react";
+import Card from "../components/Card";
+import Preloader from "./Preloader";
 
-function Main({ 
+function Main({
+  onQuestionOver,
   onAddPlace,
   dataImage,
   openPopImage,
@@ -10,28 +11,45 @@ function Main({
   onConfirmDelete,
   loggedIn,
 }) {
-
-
-
   if (cards) {
     cards.sort((a, b) => {
       return b.rating - a.rating;
-    })
+    });
   }
   return (
-    (<main className="content section">
+    <main className="content section">
       <section className="profile">
-        {loggedIn ?
-          <button type="button" onClick={onAddPlace} className="profile__button-add">&#10010; Добавить</button>
-          :
-          <button type="button" onClick={onAddPlace} className="profile__button-add_unactive" disabled>&#10010; Добавить</button>
-        }
+        {loggedIn ? (
+          <button
+            type="button"
+            onClick={onAddPlace}
+            className="profile__button-add"
+          >
+            &#10010; ДОБАВИТЬ
+          </button>
+        ) : (
+          <>
+            <button
+              type="button"
+              onClick={onAddPlace}
+              className="profile__button-add_unactive"
+              disabled
+            >
+              &#10010; ДОБАВИТЬ
+            </button>
+            <div onClick={onQuestionOver} className="profile__question">
+              ?
+            </div>
+          </>
+        )}
       </section>
+
       <section className="elements">
-        {cards ?
-          (cards.map(card => (
-            <Card key={card._id}
-                  card={card}
+        {cards ? (
+          cards.map((card) => (
+            <Card
+              key={card._id}
+              card={card}
               loggedIn={loggedIn}
               id={card._id}
               rating={card.rating}
@@ -45,12 +63,12 @@ function Main({
               openPic={openPopImage}
               onConfirmDelete={onConfirmDelete}
             />
-          )))
-          : <Preloader />
-        }
+          ))
+        ) : (
+          <Preloader />
+        )}
       </section>
     </main>
-    )
   );
 }
 

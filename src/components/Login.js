@@ -25,14 +25,14 @@ function Login({ onLogin }) {
                     value={userData.email}
                     placeholder="Email"
                     className="login__input login__input_email"
-                    minLength="2" maxLength="30" required />
+                    required />
                 <input type="password"
                     name="password"
                     onChange={handleChange}
                     value={userData.password}
                     placeholder="Пароль"
                     className="login__input login__input_password"
-                    minLength="4" required />
+                    required />
                 <button type="submit" className="login__save" >Войти</button>
             </form>
         </div>

@@ -7,9 +7,19 @@
   position: relative;
 }
 
+
 @media screen and (max-width: 428px) {
   .element {
     max-width: inherit;
     /* max-height: 100%; */
   }
+}
+
+.anim-appear {
+  opacity: 0.01;
+}
+ 
+.anim-appear.anim-appear-active{
+  opacity: 2;
+  transition: opacity 5s ease-in;
 }

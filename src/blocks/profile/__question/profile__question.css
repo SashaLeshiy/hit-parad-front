@@ -1,0 +1,16 @@
+.profile__question {
+    color: #828282;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid #828282;
+    text-align: center;
+    align-self: center;
+    position: relative;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.profile__question:hover {
+    cursor: pointer;
+}

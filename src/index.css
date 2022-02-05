@@ -22,6 +22,8 @@
 @import url('../src/blocks/profile/__button-add/profile__button-add.css');
 @import url('../src/blocks/profile/__button-add/profile__button-add_unactive.css');
 @import url('../src/blocks/profile/__imageEdit/profile__imageEdit.css');
+@import url('../src/blocks/profile/__question/profile__question.css');
+@import url('../src/blocks/profile/__tooltips/profile__tooltips.css');
 @import url('../src/blocks/elements/elements.css');
 @import url('../src/blocks/elements/__extraStyle/elements__extraStyle.css');
 @import url('../src/blocks/element/element.css');

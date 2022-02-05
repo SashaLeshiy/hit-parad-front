@@ -1,27 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, useHistory, Switch } from 'react-router-dom';
-import Header from './Header.js';
-import Main from './Main.js';
-import Footer from './Footer.js';
-import ImagePopup from './ImagePopup';
+import { Route, useHistory, Switch } from "react-router-dom";
+import Header from "./Header.js";
+import Main from "./Main.js";
+import Footer from "./Footer.js";
+import ImagePopup from "./ImagePopup";
 // import EditProfilePopup from './EditProfilePopup';
 // import EditAvatarPopup from './EditAvatarPopup';
-import AddPlacePopup from './AddPlacePopup';
-import InfoTooltip from './InfoTooltip';
-import ConfirmDeletePopup from './ConfirmDeletePopup';
-import Login from './Login.js';
-import Register from './Register.js';
-import * as auth from '../utils/auth.js';
-import MobileMenu from './MobileMenu';
+import AddPlacePopup from "./AddPlacePopup";
+import InfoTooltip from "./InfoTooltip";
+import ConfirmDeletePopup from "./ConfirmDeletePopup";
+import Login from "./Login.js";
+import Register from "./Register.js";
+import * as auth from "../utils/auth.js";
+import MobileMenu from "./MobileMenu";
 import { getCards } from "../../src/store/actions/cardActions";
 import { userInfo, getUser } from "../store/actions/userActions";
 import * as actions from "../store/actions/index";
+import OkIcon from "../images/ok_icon.jpg";
+import NotIcon from "../images/not_icon.jpg";
+import InfoIcon from "../images/info_icon.png";
 
 function App() {
   const dispatch = useDispatch();
   const history = useHistory();
-  // const [isEditProfilePopupOpen, setProfilePopupOpen] = useState(false); // ЕСЛИ ПОНАДОБИТСЯ 
+  // const [isEditProfilePopupOpen, setProfilePopupOpen] = useState(false); // ЕСЛИ ПОНАДОБИТСЯ
   // const [isEditAvatarPopupOpen, setAvatarPopupOpen] = useState(false); // ДЕЛАТЬ ЛК С АВОЙ И ПРОФИЛЕМ
   const [isAddPlacePopupOpen, setPlacePopupOpen] = useState(false);
   const [isImagePopupOpen, setImagePopupOpen] = useState(false);
@@ -31,27 +34,31 @@ function App() {
   const [loginPage, setLoginPage] = useState(true);
   const [isAuth, setIsAuth] = useState(true);
   const [isOpenMobileMenu, setOpenMobileMenu] = useState(false);
-  const [isConfirmDeletePopup, setConfirmDeletePopup] = useState(false)
-  const [textSubmit, setTextSubmit] = useState('Добавить');
+  const [isConfirmDeletePopup, setConfirmDeletePopup] = useState(false);
+  const [textSubmit, setTextSubmit] = useState("Добавить");
   const [isLoading, setIsLoading] = useState(false);
+  const [questionPopup, setQuestionPopup] = useState(false);
+  const [srcIcon, setSrcIcon] = useState("");
+  const [infoHeading, setInfoHeading] = useState("");
 
   const cards = useSelector((state) => state.cardReducer.cards);
+  // const user = useSelector((state) => state.userReducer.user);
 
   function tokenCheck() {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (!token) {
       return;
     }
     dispatch(getUser(token));
     dispatch(userInfo());
     setLoggedIn(true);
-    history.push('/');
+    history.push("/");
   }
 
   useEffect(() => {
     dispatch(getCards());
     tokenCheck();
-  }, [dispatch])
+  }, [dispatch]);
 
   // const handleEditAvatarClick = () => {
   //   setAvatarPopupOpen(true);
@@ -62,17 +69,17 @@ function App() {
   // }
 
   const handleAddPlaceClick = () => {
-    setTextSubmit('Добавить');
+    setTextSubmit("Добавить");
     setPlacePopupOpen(true);
-  }
+  };
 
   const handleCardClick = () => {
     setImagePopupOpen(true);
-  }
+  };
 
   const handleDeleteCard = (id) => {
     setConfirmDeletePopup(true);
-  }
+  };
 
   const closeAllPopups = () => {
     // setProfilePopupOpen(false);
@@ -81,20 +88,23 @@ function App() {
     setImagePopupOpen(false);
     setInfoTooltipOpen(false);
     setConfirmDeletePopup(false);
+    setQuestionPopup(false);
     dispatch({ type: actions.ADD_CARD_FAILURE, cardError: false });
-  }
+  };
 
   function showLoader() {
     setIsLoading(!isLoading);
   }
 
-
   function onRegister(data) {
-    auth.register(data)
+    auth
+      .register(data)
       .then((res) => {
         if (res) {
           setInfoTooltipOpen(true);
-          history.push('/signin');
+          setSrcIcon(OkIcon);
+          setInfoHeading("Вы успешно зарегистрировались!");
+          history.push("/signin");
           setLoginPage(true);
           setIsAuth(true);
         }
@@ -102,36 +112,41 @@ function App() {
       .catch((err) => {
         setIsAuth(false);
         setInfoTooltipOpen(true);
+        setSrcIcon(NotIcon);
+        setInfoHeading("Что-то пошло не так! Попробуйте еще раз.");
       });
-  };
+  }
 
   function onLogin(data) {
-    auth.authorize(data)
+    auth
+      .authorize(data)
       .then((res) => {
         if (res.token) {
-          localStorage.setItem('token', res.token);
+          localStorage.setItem("token", res.token);
           tokenCheck();
         }
       })
       .catch((err) => {
         setIsAuth(false);
         setInfoTooltipOpen(true);
+        setSrcIcon(NotIcon);
+        setInfoHeading("Что-то пошло не так! Попробуйте еще раз.");
       });
-  };
+  }
 
   const signOut = () => {
     localStorage.clear();
     setLoggedIn(false);
-    history.push('/signin');
+    history.push("/signin");
     setLoginPage(true);
-  }
+  };
 
   function linkTo() {
     if (loginPage) {
-      history.push('/signup');
+      history.push("/signup");
       setLoginPage(false);
     } else {
-      history.push('/signin');
+      history.push("/signin");
       setLoginPage(true);
     }
   }
@@ -140,17 +155,28 @@ function App() {
     isOpenMobileMenu ? setOpenMobileMenu(false) : setOpenMobileMenu(true);
   }
 
+  function onQuestionOver(e) {
+    setQuestionPopup(true);
+    setInfoTooltipOpen(true);
+    setSrcIcon(InfoIcon);
+    setInfoHeading(
+      "Добавление песен и голосование доступно только после регистрации!"
+    );
+  }
+
   return (
     <div className="page">
       <div className="page__container">
-        <MobileMenu loggedIn={loggedIn}
+        <MobileMenu
+          loggedIn={loggedIn}
           signOut={signOut}
           loginPage={loginPage}
           setLoginPage={setLoginPage}
           linkTo={linkTo}
           isOpenMobileMenu={isOpenMobileMenu}
         />
-        <Header loggedIn={loggedIn}
+        <Header
+          loggedIn={loggedIn}
           signOut={signOut}
           loginPage={loginPage}
           setLoginPage={setLoginPage}
@@ -158,11 +184,11 @@ function App() {
           openMobileMenu={openMobileMenu}
           isOpenMobileMenu={isOpenMobileMenu}
         />
-        <Switch >
+        <Switch>
           <Route exact path="/signup">
             <Register onRegister={onRegister} setLoginPage={setLoginPage} />
           </Route>
-          <Route exact path="/signin" >
+          <Route exact path="/signin">
             <Login onLogin={onLogin} />
           </Route>
           <Route exact path="/">
@@ -176,6 +202,7 @@ function App() {
               cards={cards}
               onConfirmDelete={handleDeleteCard}
               card={selectedCard}
+              onQuestionOver={onQuestionOver}
             />
           </Route>
         </Switch>
@@ -219,6 +246,9 @@ function App() {
           onClose={closeAllPopups}
           setIsAuth={setIsAuth}
           isAuth={isAuth}
+          questionPopup={questionPopup}
+          srcIcon={srcIcon}
+          infoHeading={infoHeading}
         />
       </div>
     </div>

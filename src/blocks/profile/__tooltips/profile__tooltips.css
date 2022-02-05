@@ -1,0 +1,119 @@
+.profile__tooltips {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
+    /* visibility: hidden; */
+    min-width: 200px;
+    /* opacity: 0; */
+    display: inline-block;
+    position: absolute;
+    text-align: left;
+    width: auto;
+    background: #828282;
+    color: #ffffff;
+    font-size: 1rem;
+    line-height: 1.2;
+    padding: 10px;
+    border-radius: 3px;
+    white-space: normal;
+    /* white-space: nowrap; // Uncomment this line if you want to break line */
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease-out;
+    /* bottom: -15px; */
+    left: 50%;
+    transform: translate(-50%, 150%);
+} 
+
+.profile__tooltips_heading:hover {
+     cursor: pointer;
+}
+
+/* .profile__tooltips:hover {
+    visibility: visible;
+    opacity: 1;
+} */
+
+.profile__tooltips::before {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    border-bottom: 8px solid #828282;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    top: -8px;
+    margin-left: -8px;
+    left: 50%;
+}
+
+
+
+/* .profile__tooltips:hover p {
+    visibility: visible;
+    opacity: 1;
+}
+
+.profile__tooltips:hover p.OnBottom {
+    transform: translate(-50%, 100%);
+} */
+
+/* p {
+    min-width: 100px;
+    opacity: 0;
+    display: inline-block;
+    visibility: hidden;
+    position: absolute;
+    text-align: left;
+    width: auto;
+    background: #67C8EA;
+    color: #ffffff;
+    font-size: 1rem;
+    line-height: 1.2;
+    padding: 10px;
+    border-radius: 3px;
+    white-space: normal;
+    /* white-space: nowrap; // Uncomment this line if you want to break line */
+    /* box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease-out;
+} */ 
+
+/* p.OnTop {
+    top: -45px;
+    left: 50%;
+    transform: translate(-50%, -150%);
+}
+
+p:before {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 8px solid #67C8EA;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    bottom: -8px;
+    margin-left: -8px;
+    left: 50%;
+} */
+
+/* p.OnBottom {
+    bottom: -15px;
+    left: 50%;
+    transform: translate(-50%, 150%);
+}
+
+p:before {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    border-bottom: 8px solid #828282;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    top: -8px;
+    margin-left: -8px;
+    left: 50%;
+} */

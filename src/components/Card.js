@@ -59,6 +59,7 @@ function Card({ id,
 
 
   return (
+    
     (<article className="element" >
       <a href="##" target="_self">
         <img src={link} alt={name} className="element__image" onClick={handleClick}/>
@@ -82,6 +83,7 @@ function Card({ id,
         </div>
     </article>
     )
+    
   );
 
 }
