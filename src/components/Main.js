@@ -20,13 +20,21 @@ function Main({
     <main className="content section">
       <section className="profile">
         {loggedIn ? (
-          <button
-            type="button"
-            onClick={onAddPlace}
-            className="profile__button-add"
-          >
-            &#10010; ДОБАВИТЬ
-          </button>
+          <>
+            <button
+              type="button"
+              onClick={onAddPlace}
+              className="profile__button-add"
+            >
+              &#10010; ДОБАВИТЬ
+            </button>
+            {/* <label>Сортировка
+            <select className="profile__select">
+              <option value="date">По дате</option>
+              <option value="rating">По рейтингу</option>
+            </select>
+          </label> */}
+          </>
         ) : (
           <>
             <button

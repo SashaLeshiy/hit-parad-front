@@ -40,6 +40,7 @@ function App() {
   const [questionPopup, setQuestionPopup] = useState(false);
   const [srcIcon, setSrcIcon] = useState("");
   const [infoHeading, setInfoHeading] = useState("");
+  const [timeSort, setTimeSort] = useState(false);
 
   const cards = useSelector((state) => state.cardReducer.cards);
   // const user = useSelector((state) => state.userReducer.user);
@@ -90,6 +91,8 @@ function App() {
     setConfirmDeletePopup(false);
     setQuestionPopup(false);
     dispatch({ type: actions.ADD_CARD_FAILURE, cardError: false });
+    setSrcIcon("");
+    setInfoHeading("");
   };
 
   function showLoader() {
@@ -249,6 +252,9 @@ function App() {
           questionPopup={questionPopup}
           srcIcon={srcIcon}
           infoHeading={infoHeading}
+          setSrcIcon={setSrcIcon}
+          setInfoHeading={setInfoHeading}
+          notIcon={NotIcon}
         />
       </div>
     </div>
