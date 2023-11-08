@@ -1,5 +1,6 @@
 .popup__imageFrame {
-    width: 138px;
-    height: 138px;
+    /* width: 138px; */
+    height: 177px;
     align-self: center;
+    border-radius: 20px;
 }
